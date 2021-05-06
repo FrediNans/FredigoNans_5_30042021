@@ -1,30 +1,30 @@
 (async function () {
-	const articles = await getArticles();
+	const items = await getItems();
 
-	for (article of articles) {
-		displayArticle(article);
+	for (item of items) {
+		displayItem(item);
 	}
 })();
 
-function getArticles() {
+function getItems() {
 	return fetch("https://projet5-orinoco.herokuapp.com/api/furniture")
 		.then(function (httpResponse) {
 			return httpResponse.json();
 		})
-		.then(function (articles) {
-			return articles;
+		.then(function (items) {
+			return items;
 		})
 		.catch(function (error) {
 			alert(error);
 		});
 }
 
-function displayArticle(article) {
+function displayItem(item) {
 	const templateElt = document.getElementById("templateArticle");
 	const cloneElt = document.importNode(templateElt.content, true);
 
-	cloneElt.getElementById("card__image").src = article.imageUrl;
-	cloneElt.getElementById("card__name").textContent = article.name;
+	cloneElt.getElementById("card__image").src = item.imageUrl;
+	cloneElt.getElementById("card__name").textContent = item.name;
 
 	document.getElementById("main").appendChild(cloneElt);
 }
