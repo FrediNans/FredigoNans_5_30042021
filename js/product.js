@@ -10,7 +10,7 @@ const id = window.location.search.substring(1);
 /// promise ///
 
 function getItem() {
-	return fetch(`http://projet5-orinoco.herokuapp.com/api/furniture/${id}`)
+	return fetch(`https://projet5-orinoco.herokuapp.com/api/furniture/${id}`)
 		.then(function http(httpResponse) {
 			if (httpResponse.ok === false) {
 				document.getElementById("errorPage").setAttribute("class", "d-block");

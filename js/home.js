@@ -11,7 +11,7 @@
 /// promise ///
 
 function getItems() {
-	return fetch("http://projet5-orinoco.herokuapp.com/api/furniture")
+	return fetch("https://projet5-orinoco.herokuapp.com/api/furniture")
 		.then(function (httpResponse) {
 			return httpResponse.json();
 		})
