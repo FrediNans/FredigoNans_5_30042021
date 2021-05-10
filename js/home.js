@@ -11,7 +11,7 @@
 /// promise ///
 
 function getItems() {
-	return fetch("https://projet5-orinoco.herokuapp.com/api/furniture")
+	return fetch("http://projet5-orinoco.herokuapp.com/api/furniture")
 		.then(function (httpResponse) {
 			return httpResponse.json();
 		})
@@ -26,13 +26,17 @@ function getItems() {
 /// create html bloc for each item in api ///
 
 function displayItem(item) {
+	const url = "product.html?";
 	const templateElt = document.getElementById("templateArticle");
 	const cloneElt = document.importNode(templateElt.content, true);
+	const price = item.price / 1000;
+	const priceDecimal = price.toFixed(2) + " €";
 
 	cloneElt.getElementById("card__image").src = item.imageUrl;
 	cloneElt.getElementById("card__name").textContent = item.name;
-	cloneElt.getElementById("card__id").textContent = item._id;
-	console.log(item);
+	cloneElt.getElementById("card__id").href = url + item._id;
+	cloneElt.getElementById("card__price").textContent = priceDecimal;
+
 	document.getElementById("main").appendChild(cloneElt);
 }
 

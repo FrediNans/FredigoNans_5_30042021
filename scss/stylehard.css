@@ -1,0 +1,45 @@
+html {
+	max-width: 1440px;
+	margin: auto;
+}
+.card-img-top {
+	object-fit: cover;
+	height: 15rem;
+}
+.card {
+	border-radius: 1rem;
+}
+.oDark.Oak {
+	background-color: #55342b;
+	color: #ffffff;
+}
+.oLight.Oak {
+	background-color: #a66554;
+	color: #ffffff;
+}
+.oBlack {
+	background-color: #000000;
+	color: #ffffff;
+}
+.oChocolate {
+	background-color: chocolate;
+}
+.oTan {
+	background-color: tan;
+}
+.oTeak {
+	background-color: #ab8953;
+}
+.oMahogany {
+	background-color: #82495a;
+	color: #ffffff;
+}
+.br1 {
+	border-radius: 0.6rem;
+}
+.br2 {
+	border-radius: 1.5rem;
+}
+.container-height {
+	height: 63vh;
+}

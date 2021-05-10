@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+		/>
+		<link rel="stylesheet" href="scss/style.css" />
+		<link rel="stylesheet" href="scss/stylehard.css" />
+		<script src="./js/product.js" defer></script>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+		/>
+		<title>Orinoco</title>
+	</head>
+	<body>
+		<header class="container-fluid d-flex justify-content-start bg-primary">
+			<div class="col-12 col-md-6 col-lg-4">
+				<a href="index.html"
+					><img class="img-fluid" src="image/logo.png" alt="logo Orinoco"
+				/></a>
+			</div>
+		</header>
+		<main>
+			<div id="main">
+				<div class="d-flex flex-column flex-lg-row">
+					<div
+						class="product__image mx-3 my-3 my-lg-5 col-lg-6 br2 overflow-hidden"
+					>
+						<img class="img-fluid" id="item__image" src="" alt="..." />
+					</div>
+					<div class="my-lg-5">
+						<div class="d-flex flex-column">
+							<h1 class="ms-3 mt-2 fw-bold fs-1" id="item__name"></h1>
+							<p class="mx-3 fs-4" id="item__description"></p>
+							<p id="item__price" class="fw-bold fs-4 ms-3 col-6"></p>
+							<div id="item__options" class="d-lg-flex flex-lg-wrap">
+								<h2 class="ms-3 col-lg-9">
+									Choisissez une couleur de vernis :
+								</h2>
+								<template id="templateArticle">
+									<div
+										class="d-flex my-2 col-6 justify-content-center align-content-center"
+									>
+										<input
+											class="form-check-input fs-1 my-auto"
+											type="radio"
+											name="exampleRadios"
+											id="flexCheckIndeterminate"
+											value="option2"
+											checked
+										/>
+										<div
+											id="varnish__sample"
+											class="py-2 col-6 ms-3 border text-center br1 o"
+										>
+											<label
+												id="varnish__color"
+												class="px-2 bg-transparent form-check-label"
+												for="varnish"
+											>
+											</label>
+										</div>
+									</div>
+								</template>
+							</div>
+							<button
+								type="button"
+								class="btn btn-secondary text-white fw-bold fs-3 br1 col-8 col-lg-6 mx-auto my-3 my-lg-4 btn-lg"
+							>
+								<i class="me-3 bi bi-cart3"></i>Ajoutez au panier
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="errorPage" class="d-none">
+				<div class="container-height d-flex flex-column justify-content-center">
+					<p class="text-center fw-bold my-5 fs-4 col-md-6 col-lg-4 mx-auto">
+						Nous rencontrons actuellement des problèmes pour accéder à cette
+						référence.
+					</p>
+					<div class="d-flex justify-content-center">
+						<a
+							class="btn-secondary text-white text-center text text-decoration-none px-4 br1 my-5 py-2"
+							href="index.html"
+							>Retour à l'acceuil</a
+						>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer class="container-fluid bg-primary">
+			<div class="list-group list-group-horizontal-md bg-primary p-3 p-md-5">
+				<a
+					href="#"
+					class="list-group-item list-group-item-action disabled bg-primary shadow-none border-0 text-center fs-4"
+					tabindex="-1"
+					aria-disabled="true"
+					><i class="bi bi-envelope"></i> Contactez-nous</a
+				>
+				<a
+					href="#"
+					class="list-group-item list-group-item-action disabled bg-primary shadow-none border-0 text-center fs-4"
+					tabindex="-1"
+					aria-disabled="true"
+					><i class="bi bi-file-earmark-ruled"></i> CGV</a
+				>
+				<a
+					href="#"
+					class="list-group-item list-group-item-action disabled bg-primary shadow-none border-0 text-center fs-4"
+					tabindex="-1"
+					aria-disabled="true"
+					><i class="bi bi-tree"></i> Bois écoresponsable</a
+				>
+				<a
+					href="#"
+					class="list-group-item list-group-item-action disabled bg-primary shadow-none border-0 text-center fs-4"
+					tabindex="-1"
+					aria-disabled="true"
+					><i class="bi bi-truck"></i> Conditions de livraison</a
+				>
+			</div>
+		</footer>
+	</body>
+</html>
