@@ -27,9 +27,19 @@
 		</header>
 		<main>
 			<div id="main">
-				<div class="d-flex flex-column flex-lg-row">
+				<div id="product__main__image" class="d-flex flex-column flex-lg-row">
 					<div
-						class="product__image mx-3 my-3 my-lg-5 col-lg-6 br2 overflow-hidden"
+						class="
+							product__image
+							mx-3
+							my-3
+							mt-lg-5
+							mb-lg-auto
+							col-lg-6
+							br2
+							overflow-hidden
+							shadow
+						"
 					>
 						<img class="img-fluid" id="item__image" src="" alt="..." />
 					</div>
@@ -39,40 +49,94 @@
 							<p class="mx-3 fs-4" id="item__description"></p>
 							<p id="item__price" class="fw-bold fs-4 ms-3 col-6"></p>
 							<div id="item__options" class="d-lg-flex flex-lg-wrap">
-								<h2 class="ms-3 col-lg-9">
-									Choisissez une couleur de vernis :
-								</h2>
-								<template id="templateArticle">
-									<div
-										class="d-flex my-2 col-6 justify-content-center align-content-center"
-									>
-										<input
-											class="form-check-input fs-1 my-auto"
-											type="radio"
-											name="exampleRadios"
-											id="flexCheckIndeterminate"
-											value="option2"
-											checked
-										/>
+								<button
+									id="dropDownButtonShow"
+									class="
+										btn btn-primary btn-lg
+										mx-auto
+										my-3
+										d-flex
+										justify-content-between
+										align-content-center
+										br1
+										shadow
+									"
+									type="button"
+									onclick="showMenu()"
+								>
+									<h2>
+										Cliquez ici pour choisir un vernis
+										<i class="bi bi-arrow-down-short"></i>
+									</h2>
+								</button>
+								<div
+									id="varnish__collapse"
+									class="
+										height-0
+										flex-column flex-lg-row flex-md-wrap
+										justify-content-evenly
+									"
+								>
+									<template id="templateArticle">
 										<div
-											id="varnish__sample"
-											class="py-2 col-6 ms-3 border text-center br1 o"
+											class="
+												d-flex
+												my-2 my-lg-3
+												justify-content-center
+												align-content-center
+											"
 										>
-											<label
-												id="varnish__color"
-												class="px-2 bg-transparent form-check-label"
-												for="varnish"
+											<input
+												class="form-check-input ms-lg-3 fs-1 my-auto"
+												type="radio"
+												name="exampleRadios"
+												value="option2"
+											/>
+											<div
+												id="varnish__sample"
+												class="
+													d-flex
+													flex-wrap
+													ms-3
+													overflow-hidden
+													border
+													text-center
+													br1
+												"
 											>
-											</label>
+												<img
+													id="wood__texture"
+													src="./image/wood-texture.png"
+													alt=""
+												/>
+												<label
+													id="varnish__color"
+													class="px-2 bg-transparent form-check-label"
+													for="varnish"
+												>
+												</label>
+											</div>
 										</div>
-									</div>
-								</template>
+									</template>
+								</div>
 							</div>
 							<button
+								id="addToCartButton"
 								type="button"
-								class="btn btn-secondary text-white fw-bold fs-3 br1 col-8 col-lg-6 mx-auto my-3 my-lg-4 btn-lg"
+								class="
+									btn btn-secondary
+									text-white
+									fw-bold
+									fs-3
+									br1
+									col-8 col-lg-6
+									mx-auto
+									my-3 my-lg-4
+									btn-lg
+									shadow
+								"
 							>
-								<i class="me-3 bi bi-cart3"></i>Ajoutez au panier
+								<i class="me-3 bi bi-cart3"></i>Ajouter au panier
 							</button>
 						</div>
 					</div>
@@ -86,7 +150,14 @@
 					</p>
 					<div class="d-flex justify-content-center">
 						<a
-							class="btn-secondary text-white text-center text text-decoration-none px-4 br1 my-5 py-2"
+							class="
+								btn-secondary
+								text-white text-center text text-decoration-none
+								px-4
+								br1
+								my-5
+								py-2
+							"
 							href="index.html"
 							>Retour à l'acceuil</a
 						>
@@ -94,32 +165,64 @@
 				</div>
 			</div>
 		</main>
-		<footer class="container-fluid bg-primary">
+		<footer class="container-fluid bg-primary mt-lg-5">
 			<div class="list-group list-group-horizontal-md bg-primary p-3 p-md-5">
 				<a
 					href="#"
-					class="list-group-item list-group-item-action disabled bg-primary shadow-none border-0 text-center fs-4"
+					class="
+						list-group-item list-group-item-action
+						disabled
+						bg-primary
+						shadow-none
+						border-0
+						text-center
+						fs-4
+					"
 					tabindex="-1"
 					aria-disabled="true"
 					><i class="bi bi-envelope"></i> Contactez-nous</a
 				>
 				<a
 					href="#"
-					class="list-group-item list-group-item-action disabled bg-primary shadow-none border-0 text-center fs-4"
+					class="
+						list-group-item list-group-item-action
+						disabled
+						bg-primary
+						shadow-none
+						border-0
+						text-center
+						fs-4
+					"
 					tabindex="-1"
 					aria-disabled="true"
 					><i class="bi bi-file-earmark-ruled"></i> CGV</a
 				>
 				<a
 					href="#"
-					class="list-group-item list-group-item-action disabled bg-primary shadow-none border-0 text-center fs-4"
+					class="
+						list-group-item list-group-item-action
+						disabled
+						bg-primary
+						shadow-none
+						border-0
+						text-center
+						fs-4
+					"
 					tabindex="-1"
 					aria-disabled="true"
 					><i class="bi bi-tree"></i> Bois écoresponsable</a
 				>
 				<a
 					href="#"
-					class="list-group-item list-group-item-action disabled bg-primary shadow-none border-0 text-center fs-4"
+					class="
+						list-group-item list-group-item-action
+						disabled
+						bg-primary
+						shadow-none
+						border-0
+						text-center
+						fs-4
+					"
 					tabindex="-1"
 					aria-disabled="true"
 					><i class="bi bi-truck"></i> Conditions de livraison</a
