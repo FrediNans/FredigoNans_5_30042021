@@ -1,15 +1,13 @@
-/// main function ///
-
+/// function to be used asynchronously with the promise ///
 (async function () {
-	const items = await getItems();
+	const items = await getItems(); /// await fetch ///
 
 	for (item of items) {
-		displayItem(item);
+		displayItem(item); /// loop use to chain each object of api ///
 	}
 })();
 
 /// promise ///
-
 function getItems() {
 	return fetch("https://projet5-orinoco.herokuapp.com/api/furniture")
 		.then(function (httpResponse) {
@@ -24,20 +22,15 @@ function getItems() {
 }
 
 /// create html bloc for each item in api ///
-
 function displayItem(item) {
-	const url = "product.html?";
 	const templateElt = document.getElementById("templateArticle");
 	const cloneElt = document.importNode(templateElt.content, true);
-	const price = item.price / 1000;
-	const priceDecimal = price.toFixed(2) + " €";
 
 	cloneElt.getElementById("card__image").src = item.imageUrl;
 	cloneElt.getElementById("card__name").textContent = item.name;
-	cloneElt.getElementById("card__id").href = url + item._id;
-	cloneElt.getElementById("card__price").textContent = priceDecimal;
+	cloneElt.getElementById("card__id").href = "product.html?" + item._id;
+	cloneElt.getElementById("card__price").textContent =
+		(item.price / 1000).toFixed(2) + " €";
 
 	document.getElementById("main").appendChild(cloneElt);
 }
-
-/// on click open item page ///

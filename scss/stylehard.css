@@ -9,28 +9,28 @@ html {
 .card {
 	border-radius: 1rem;
 }
-.oDark.Oak {
-	background-color: #55342b;
+.Dark.Oak {
+	background-color: #55342b !important;
 	color: #ffffff;
 }
-.oLight.Oak {
+.Light.Oak {
 	background-color: #a66554;
 	color: #ffffff;
 }
-.oBlack {
+.Black {
 	background-color: #000000;
 	color: #ffffff;
 }
-.oChocolate {
+.Chocolate {
 	background-color: chocolate;
 }
-.oTan {
+.Tan {
 	background-color: tan;
 }
-.oTeak {
+.Teak {
 	background-color: #ab8953;
 }
-.oMahogany {
+.Mahogany {
 	background-color: #82495a;
 	color: #ffffff;
 }
@@ -40,6 +40,33 @@ html {
 .br2 {
 	border-radius: 1.5rem;
 }
+#product__main__image {
+	object-fit: cover;
+	height: auto;
+}
 .container-height {
 	height: 63vh;
+}
+#varnish__sample {
+	width: 150px;
+	height: 50px;
+}
+#wood__texture {
+	width: 150px;
+}
+#varnish__collapse {
+	transition: all 5s;
+}
+.height-0 {
+	display: none;
+	opacity: 0;
+	transform: translateY(-120px);
+	transition: all 5s;
+}
+.height-1 {
+	display: flex;
+	height: auto;
+	opacity: 1;
+	transform: translatey(0);
+	transition: all 5s;
 }
