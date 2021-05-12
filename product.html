@@ -54,7 +54,7 @@
 									class="
 										btn btn-primary btn-lg
 										mx-auto
-										my-3
+										my-5
 										d-flex
 										justify-content-between
 										align-content-center
@@ -64,10 +64,7 @@
 									type="button"
 									onclick="showMenu()"
 								>
-									<h2>
-										Cliquez ici pour choisir un vernis
-										<i class="bi bi-arrow-down-short"></i>
-									</h2>
+									<h2 class="mb-0">Cliquez ici pour choisir un vernis</h2>
 								</button>
 								<div
 									id="varnish__collapse"
@@ -120,8 +117,44 @@
 									</template>
 								</div>
 							</div>
+							<div
+								class="
+									fw-bold
+									fs-3
+									br1
+									col-8 col-lg-6
+									mx-auto
+									my-3 my-lg-4
+									p-0
+									btn-lg
+									shadow
+									text-center
+									d-flex
+									justify-content-between
+									m
+								"
+							>
+								<div
+									id="product__button__less"
+									class="btn btn-primary col-2 br1 fs-2 fw-bold"
+								>
+									-
+								</div>
+								<span class="py-2">Quantité : </span>
+								<input
+									id="product__amount"
+									value="1"
+									class="py-2 col-1 border-0"
+								/>
+								<div
+									id="product__button__more"
+									class="btn btn-primary col-2 br1 fs-2 fw-bold"
+								>
+									+
+								</div>
+							</div>
 							<button
-								id="addToCartButton"
+								id="cart__button"
 								type="button"
 								class="
 									btn btn-secondary
@@ -131,12 +164,12 @@
 									br1
 									col-8 col-lg-6
 									mx-auto
-									my-3 my-lg-4
+									my-5
 									btn-lg
 									shadow
 								"
 							>
-								<i class="me-3 bi bi-cart3"></i>Ajouter au panier
+								Ajouter au panier
 							</button>
 						</div>
 					</div>
@@ -160,6 +193,49 @@
 							"
 							href="index.html"
 							>Retour à l'acceuil</a
+						>
+					</div>
+				</div>
+			</div>
+			<div id="comfirm__page" class="d-none">
+				<div class="container-height d-flex flex-column justify-content-center">
+					<h1 class="mx-3 my-3 text-center">
+						Produit ajouté au panier avec succès !
+					</h1>
+					<h2 class="mx-5 my-4 text-center">
+						Que souhaitez-vous faire maintenant ?
+					</h2>
+					<div class="d-flex justify-content-center flex-column">
+						<a
+							class="
+								btn btn-secondary
+								col-8 col-lg-4
+								text-white text-center text text-decoration-none
+								px-4
+								br1
+								mb-3
+								mx-auto
+								py-2
+								fs-3
+							"
+							href="index.html"
+							>Choisir un autre produit</a
+						>
+						<a
+							class="
+								btn btn-secondary
+								col-8 col-lg-4
+								text-white text-center text text-decoration-none
+								px-4
+								br1
+								mt-3
+								mb-5
+								mx-auto
+								py-2
+								fs-3
+							"
+							href="cart.html"
+							>Accéder à votre panier</a
 						>
 					</div>
 				</div>
