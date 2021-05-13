@@ -27,19 +27,30 @@
 		</header>
 		<main>
 			<h1 class="text-center">Votre Panier</h1>
-			<div
-				id="product__button__less"
-				class="btn btn-primary col-2 br1 fs-2 fw-bold"
-			>
-				-
-			</div>
-			<span class="py-2">Quantité : </span>
-			<input id="product__amount" value="1" class="py-2 col-1 border-0" />
-			<div
-				id="product__button__more"
-				class="btn btn-primary col-2 br1 fs-2 fw-bold"
-			>
-				+
+			<div class="container-fluid text-center" id="cart">
+				<div class="d-flex fw-bold bg-primary">
+					<div class="col-3">Référence</div>
+					<div class="col-3">Quantité</div>
+					<div class="col-3">Prix</div>
+					<div class="col-3">Total</div>
+				</div>
+				<template id="cart__product">
+					<div class="d-flex">
+						<div class="col-3" id="product__name"></div>
+						<div>
+							<input
+								class="amounts col-2 text-center border-0"
+								id="amount"
+								type="number"
+								min="1"
+								step="1"
+								value=""
+							/>
+						</div>
+						<div class="col-3" id="price"></div>
+						<div class="col-3" id="total__price"></div>
+					</div>
+				</template>
 			</div>
 		</main>
 		<footer class="container-fluid bg-primary">
