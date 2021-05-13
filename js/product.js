@@ -63,31 +63,47 @@ function showMenu() {
 	dropDownMenu.classList.toggle("height-1");
 }
 
-/// fu
-const addButton = document.getElementById("product__button__more");
-const removeButton = document.getElementById("product__button__less");
-const productAmount = document.getElementById("product__amount");
-
-removeButton.addEventListener("click", function () {
-	if (productAmount.value > 1) {
-		productAmount.value--;
-	}
-});
-addButton.addEventListener("click", function () {
-	productAmount.value++;
-});
 function addArrayInfo(product) {
 	const productName = product.name;
-	const productKey = product.name;
 	const productPrice = (product.price / 1000).toFixed(2) + " €";
-	let productInCart = [];
 
+	const addButton = document.getElementById("product__button__more");
+	const removeButton = document.getElementById("product__button__less");
+	const productAmount = document.getElementById("product__amount");
+
+	removeButton.addEventListener("click", function () {
+		if (productAmount.value > 1) {
+			productAmount.value--;
+			productToAdd.amount = productAmount.value;
+		}
+	});
+	addButton.addEventListener("click", function () {
+		productAmount.value++;
+		productToAdd.amount = productAmount.value;
+	});
+	let productToAdd = {
+		id: id,
+		name: productName,
+		price: productPrice,
+		amount: "1",
+	};
 	document
 		.getElementById("cart__button")
-		.addEventListener("click", function () {
-			localStorage.setItem(id, productAmount.value);
-			console.log(productInCart);
+		.addEventListener("click", function (e) {
+			const productInStorage = sessionStorage.getItem("cart");
+			if (productInStorage) {
+				productInCart = JSON.parse(productInStorage);
+				productInCart.push(productToAdd);
+				sessionStorage.setItem("cart", JSON.stringify(productInCart));
+			} else {
+				productInCart = [];
+				productInCart.push(productToAdd);
+				sessionStorage.setItem("cart", JSON.stringify(productInCart));
+			}
+
 			document.getElementById("comfirm__page").setAttribute("class", "d-block");
 			document.getElementById("main").setAttribute("class", "d-none");
 		});
 }
+
+////////////////////////////////////////////////////////////////////////////////
