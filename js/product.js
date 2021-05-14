@@ -84,7 +84,7 @@ function addArrayInfo(product) {
 	let productToAdd = {
 		id: id,
 		name: productName,
-		price: productPrice,
+		price: product.price,
 		amount: "1",
 	};
 	document

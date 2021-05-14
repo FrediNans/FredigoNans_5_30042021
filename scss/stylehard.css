@@ -70,3 +70,6 @@ html {
 	transform: translatey(0);
 	transition: all 5s;
 }
+#cart__table__col-1 {
+	height: 100px !important;
+}
