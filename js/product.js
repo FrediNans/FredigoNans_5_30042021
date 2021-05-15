@@ -111,6 +111,7 @@ function addToCart(product) {
 		price: product.price,
 		amount: 1,
 	};
+
 	/// Add to cart button ///
 	addToCartButton.addEventListener("click", function () {
 		addProductInStorage();
