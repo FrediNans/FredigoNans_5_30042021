@@ -60,15 +60,12 @@ html {
 	transform: translatey(0);
 	transition: all 5s;
 }
-.case {
+.box {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 70px;
 }
-#case {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 70px;
+.amount__input {
+	width: 20%;
 }
