@@ -47,16 +47,6 @@ html {
 .container-height {
 	height: 63vh;
 }
-#varnish__sample {
-	width: 150px;
-	height: 50px;
-}
-#wood__texture {
-	width: 150px;
-}
-#varnish__collapse {
-	transition: all 5s;
-}
 .height-0 {
 	display: none;
 	opacity: 0;
@@ -70,6 +60,15 @@ html {
 	transform: translatey(0);
 	transition: all 5s;
 }
-#cart__table__col-1 {
-	height: 100px !important;
+.case {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 70px;
+}
+#case {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 70px;
 }

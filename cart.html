@@ -25,31 +25,34 @@
 				/></a>
 			</div>
 		</header>
-		<main>
+		<main class="container-fluid">
 			<h1 class="text-center mt-3 fw-bold">Votre Panier</h1>
-			<table class="table" id="cart">
-				<thead class="d-flex justify-content-between fw-bold bg-primary">
-					<tr>
-						<th class="col-3">Référence</th>
-						<th class="col-3">Quantité</th>
-						<th class="col-3">Prix</th>
-						<th class="col-3">Total</th>
-					</tr>
-				</thead>
-				<tbody class="d-flex">
-					<tr class="d-flex flex-column" id="cart__table__col-1"></tr>
-					<tr class="d-flex flex-column" id="cart__table__col-2"></tr>
-					<tr class="d-flex flex-column" id="cart__table__col-3"></tr>
-					<tr class="d-flex flex-column" id="cart__table__col-4"></tr>
-				</tbody>
-			</table>
-			<div>
-				<div class="col-3" id="product__price"></div>
-				<div class="col-3" id="total__product__price"></div>
+			<div class="" id="cart">
+				<div class="d-flex fw-bold bg-primary text-center fs-4">
+					<div class="col-3">Référence</div>
+					<div class="col-3">Quantité</div>
+					<div class="col-3">Prix</div>
+					<div class="col-3">Total</div>
+				</div>
+				<div class="d-flex text-center bg-light fs-4">
+					<div
+						class="d-flex flex-column col-3 h-100"
+						id="product__name__column"
+					></div>
+					<div class="d-flex flex-column col-3 h-100" id="amount__column"></div>
+					<div class="d-flex flex-column col-3 h-100" id="price__column"></div>
+					<div
+						class="d-flex flex-column col-3 h-100"
+						id="total__product__price__column"
+					></div>
+				</div>
 			</div>
-			<div class="container-fluid text-center d-flex justify-content-end">
+
+			<div
+				class="container-fluid text-center d-flex justify-content-end mb-3 fs-4"
+			>
 				<div class="col-3 bg-primary fw-bold">Total</div>
-				<div id="total__cart__price" class="col-3">fruit</div>
+				<div id="total__cart__price" class="col-3 bg-light">fruit</div>
 			</div>
 		</main>
 		<footer class="container-fluid bg-primary">

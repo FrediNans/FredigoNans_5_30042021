@@ -41,82 +41,34 @@
 							shadow
 						"
 					>
-						<img class="img-fluid" id="item__image" src="" alt="..." />
+						<img class="img-fluid" id="product__image" src="" alt="..." />
 					</div>
 					<div class="my-lg-5">
 						<div class="d-flex flex-column">
-							<h1 class="ms-3 mt-2 fw-bold fs-1" id="item__name"></h1>
-							<p class="mx-3 fs-4" id="item__description"></p>
-							<p id="item__price" class="fw-bold fs-4 ms-3 col-6"></p>
-							<div id="item__options" class="d-lg-flex flex-lg-wrap">
-								<button
-									id="dropDownButtonShow"
-									class="
-										btn btn-primary btn-lg
-										mx-auto
-										my-5
-										d-flex
-										justify-content-between
-										align-content-center
-										br1
-										shadow
-									"
-									type="button"
-									onclick="showMenu()"
-								>
-									<h2 class="mb-0">Cliquez ici pour choisir un vernis</h2>
-								</button>
-								<div
-									id="varnish__collapse"
-									class="
-										height-0
-										flex-column flex-lg-row flex-md-wrap
-										justify-content-evenly
-									"
-								>
-									<template id="templateArticle">
-										<div
-											class="
-												d-flex
-												my-2 my-lg-3
-												justify-content-center
-												align-content-center
-											"
-										>
-											<input
-												class="form-check-input ms-lg-3 fs-1 my-auto"
-												type="radio"
-												name="exampleRadios"
-												value="option2"
-											/>
-											<div
-												id="varnish__sample"
-												class="
-													d-flex
-													flex-wrap
-													ms-3
-													overflow-hidden
-													border
-													text-center
-													br1
-												"
-											>
-												<img
-													id="wood__texture"
-													src="./image/wood-texture.png"
-													alt=""
-												/>
-												<label
-													id="varnish__color"
-													class="px-2 bg-transparent form-check-label"
-													for="varnish"
-												>
-												</label>
-											</div>
-										</div>
-									</template>
-								</div>
+							<div class="d-flex text-center">
+								<h1 class="col-6 fw-bold fs-1" id="product__name"></h1>
+								<div id="product__price" class="fw-bold fs-1 col-6"></div>
 							</div>
+							<p class="mx-3 fs-4" id="product__description"></p>
+
+							<select
+								class="
+									text-center
+									col-8
+									mx-auto
+									fs-4
+									border-secondary
+									br1
+									shadow
+									my-5
+									fw-bold
+									py-1
+								"
+								name="Choix finition"
+								id="varnish__options"
+							>
+								<option value="">Choix finition</option>
+							</select>
 							<div
 								class="
 									fw-bold
@@ -142,6 +94,7 @@
 								</div>
 								<span class="py-2">Quantité : </span>
 								<input
+									type="tel"
 									id="product__amount"
 									value="1"
 									class="py-2 col-1 border-0"
