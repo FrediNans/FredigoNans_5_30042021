@@ -82,13 +82,12 @@ function displayInputs() {
 		amountInput.setAttribute("id", "input-" + i);
 		amountInput.setAttribute(
 			"class",
-			"box col-6 col-md-3 col-lg-2 mx-auto border-0 text-center bg-light"
+			"box col-6 col-md-3 col-lg-2 mx-auto border-0 text-center bg-light h-50"
 		);
 		if (window.matchMedia("(max-width: 576px)").matches) {
 			amountInput.setAttribute(
 				"type",
-				"number",
-
+				"tel",
 				"class",
 				"box col-6 h-50 col-md-3 col-lg-2 mx-auto border-2 border-secondary text-center bg-white br1"
 			);
