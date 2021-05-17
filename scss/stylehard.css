@@ -64,7 +64,7 @@ html {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 70px;
+	height: 100px;
 }
 .amount__input {
 	width: 20%;
