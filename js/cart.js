@@ -3,12 +3,14 @@ const cart = sessionStorage.getItem("cart");
 var productsInCart = JSON.parse(cart);
 
 /// Function used to display each product in cart ///
-(function () {
+(function main() {
 	{
 		displayProductsAdded();
 		displayAmountBox();
 		displayInputs();
+		displayButtons();
 		totalCartPrice();
+		recoverButtons();
 	}
 })();
 
@@ -57,6 +59,7 @@ function displayAmountBox() {
 
 		let amountOfProduct = document.createElement("div");
 		amountOfProduct.setAttribute("id", "box-" + i);
+		amountOfProduct.setAttribute("class", "box d-flex");
 
 		productAmountColumn.appendChild(amountOfProduct);
 	}
@@ -68,7 +71,7 @@ function displayInputs() {
 
 		let amountInput = document.createElement("input");
 		amountInput.setAttribute("value", productsInCart[i].amount);
-		amountInput.setAttribute("id", productsInCart[i].id);
+		amountInput.setAttribute("id", "input-" + i);
 		amountInput.setAttribute(
 			"class",
 			"box col-6 col-md-3 col-lg-2 mx-auto border-0 text-center bg-light"
@@ -83,9 +86,43 @@ function displayButtons() {
 		const productAmountBox = document.getElementById("box-" + i);
 
 		let moreAmountButtons = document.createElement("button");
-		amountInput.setAttribute("value", productsInCart[i].amount);
-		amountInput.setAttribute("class", "text-center bg-light");
-
-		productAmountBox.appendChild(amountInput);
+		moreAmountButtons.setAttribute(
+			"class",
+			"text-center col-3 h-50 btn-secondary br1 border-0 text-white fw-bold"
+		);
+		moreAmountButtons.setAttribute("id", "addButton-" + i);
+		moreAmountButtons.textContent = "+";
+		let lessAmountButtons = document.createElement("button");
+		lessAmountButtons.setAttribute(
+			"class",
+			"text-center col-3 h-50 btn-secondary br1 border-0 text-white fw-bold"
+		);
+		lessAmountButtons.setAttribute("id", "removeButton-" + i);
+		lessAmountButtons.textContent = "-";
+		productAmountBox.appendChild(moreAmountButtons);
+		productAmountBox.prepend(lessAmountButtons);
+	}
+}
+console.log(productsInCart);
+function recoverButtons() {
+	for (let i = 0; i < productsInCart.length; i++) {
+		document
+			.getElementById("addButton-" + i)
+			.addEventListener("click", function () {
+				productsInCart[i].amount++;
+				sessionStorage.setItem("cart", JSON.stringify(productsInCart));
+				window.location.reload();
+				console.log(productsInCart[i].amount);
+			});
+		document
+			.getElementById("removeButton-" + i)
+			.addEventListener("click", function () {
+				if (productsInCart[i].amount > 1) {
+					productsInCart[i].amount--;
+					sessionStorage.setItem("cart", JSON.stringify(productsInCart));
+					window.location.reload();
+					console.log(productsInCart[i].amount);
+				}
+			});
 	}
 }
