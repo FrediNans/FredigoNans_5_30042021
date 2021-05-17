@@ -85,11 +85,15 @@ function displayInputs() {
 			"box col-6 col-md-3 col-lg-2 mx-auto border-0 text-center bg-light"
 		);
 		if (window.matchMedia("(max-width: 576px)").matches) {
-			amountInput.setAttribute("type", "number");
 			amountInput.setAttribute(
+				"type",
+				"number",
+
 				"class",
 				"box col-6 h-50 col-md-3 col-lg-2 mx-auto border-2 border-secondary text-center bg-white br1"
 			);
+			amountInput.setAttribute("min", "1");
+			amountInput.setAttribute("max", "99");
 		}
 
 		productAmountBox.appendChild(amountInput);
@@ -146,7 +150,7 @@ function recoverButtons() {
 		if (window.matchMedia("(max-width: 576px)").matches) {
 			document
 				.getElementById("input-" + i)
-				.addEventListener("blur", function () {
+				.addEventListener("change", function () {
 					productsInCart[i].amount = document.getElementById(
 						"input-" + i
 					).value;
