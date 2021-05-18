@@ -16,40 +16,48 @@ var productsInCart = JSON.parse(cart);
 (function main() {
 	{
 		displayProductsAdded();
+		calculateTotalProductPrice();
 		displayAmountBox();
 		calculCartPrice();
 		displayInputs();
 		displayButtons();
 		moreAndRemoveButtonsEvent();
-		mobileInputEvent();
 	}
 })();
-
 /// Function used to display each product in cart ///
+
 function displayProductsAdded() {
-	for (productAdded of productsInCart) {
+	for (let i = 0; i < productsInCart.length; i++) {
 		const productNameColumn = document.getElementById("product__name__column");
 		const productPriceColumn = document.getElementById("price__column");
 		const productTotalPriceColumn = document.getElementById(
 			"total__product__price__column"
 		);
-		const productPrice = (productAdded.price / 1000).toFixed(2) + " €";
-		const productPriceTotal =
-			((productAdded.price * productAdded.amount) / 1000).toFixed(2) + " €";
+		const productPrice = (productsInCart[i].price / 1000).toFixed(2) + " €";
 
 		let productName = document.createElement("div");
-		productName.textContent = productAdded.name;
+		productName.textContent = productsInCart[i].name;
 		productName.setAttribute("class", "box fs-5");
 		let price = document.createElement("div");
 		price.textContent = productPrice;
 		price.setAttribute("class", "box fs-5");
 		let totalProductPrice = document.createElement("div");
-		totalProductPrice.textContent = productPriceTotal;
 		totalProductPrice.setAttribute("class", "box fs-5");
+		totalProductPrice.setAttribute("id", "productPrice-" + i);
 
 		productNameColumn.appendChild(productName);
 		productPriceColumn.appendChild(price);
 		productTotalPriceColumn.appendChild(totalProductPrice);
+	}
+}
+
+function calculateTotalProductPrice() {
+	for (let i = 0; i < productsInCart.length; i++) {
+		const productPriceTotal =
+			((productsInCart[i].price * productsInCart[i].amount) / 1000).toFixed(2) +
+			" €";
+		document.getElementById("productPrice-" + i).textContent =
+			productPriceTotal;
 	}
 }
 
@@ -66,7 +74,6 @@ function calculCartPrice(cartPrice) {
 
 	document.getElementById("totalCartPrice").textContent =
 		(cartPrice.reduce(reducer, 0) / 1000).toFixed(2) + " €";
-	console.log(cartPrice);
 }
 
 /// Function used to create divs with a unique id to manage inputs and buttons ///
@@ -145,38 +152,39 @@ function moreAndRemoveButtonsEvent() {
 				.addEventListener("click", function () {
 					productsInCart[i].amount++;
 					sessionStorage.setItem("cart", JSON.stringify(productsInCart));
-					window.location.reload();
-					console.log(productsInCart[i].amount);
+					calculateTotalProductPrice();
+					calculCartPrice();
+					document.getElementById("input-" + i).value =
+						productsInCart[i].amount;
 				});
 			document
 				.getElementById("removeButton-" + i)
 				.addEventListener("click", function () {
 					if (productsInCart[i].amount > 1) {
 						productsInCart[i].amount--;
+
 						sessionStorage.setItem("cart", JSON.stringify(productsInCart));
-						window.location.reload();
-						console.log(productsInCart[i].amount);
+						calculateTotalProductPrice();
+						calculCartPrice();
+						document.getElementById("input-" + i).value =
+							productsInCart[i].amount;
 					}
 				});
 		}
-	}
-}
-
-function mobileInputEvent() {
-	for (let i = 0; i < productsInCart.length; i++) {
 		if (window.matchMedia("(max-width: 576px)").matches) {
 			document
 				.getElementById("input-" + i)
 				.addEventListener("change", function () {
+					/// ! important, without this condition the number of products can be negative ! ///
+					if (document.getElementById("input-" + i).value < 1) {
+						document.getElementById("input-" + i).value = 1;
+					}
 					productsInCart[i].amount = document.getElementById(
 						"input-" + i
 					).value;
-					/// ! important, without this line the number of products can be negative ! ///
-					if (document.getElementById("input-" + i).value < 1) {
-						productsInCart[i].amount = 1;
-					}
 					sessionStorage.setItem("cart", JSON.stringify(productsInCart));
-					window.location.reload();
+					calculateTotalProductPrice();
+					calculCartPrice();
 				});
 		}
 	}
