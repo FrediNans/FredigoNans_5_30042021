@@ -6,7 +6,6 @@ const id = window.location.search.substring(1);
 	const product = await getProduct(); /// Await fetch ///
 	displayProduct(product);
 	addToCart(product);
-	console.log(product);
 })();
 
 /// Promise ///
@@ -98,7 +97,6 @@ function addToCart(product) {
 		if (currentIndex !== -1) {
 			productInCart[currentIndex].amount =
 				productInCart[currentIndex].amount + productToAdd.amount;
-			console.log(typeof productToAdd.amount);
 		} else {
 			productInCart.push(productToAdd);
 		}
