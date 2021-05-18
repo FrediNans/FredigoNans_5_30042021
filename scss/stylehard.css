@@ -69,3 +69,11 @@ html {
 .amount__input {
 	width: 20%;
 }
+.moreAndLessAmountButtons {
+	width: 50px;
+	height: 50px;
+}
+.moreAndLessAmountButtons-sm {
+	width: 25px;
+	height: 40px;
+}
