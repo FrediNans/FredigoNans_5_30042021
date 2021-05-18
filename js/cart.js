@@ -15,9 +15,9 @@ var productsInCart = JSON.parse(cart);
 	{
 		displayProductsAdded();
 		displayAmountBox();
+		calculCartPrice();
 		displayInputs();
 		displayButtons();
-		totalCartPrice();
 		recoverButtons();
 	}
 })();
@@ -49,16 +49,18 @@ function displayProductsAdded() {
 	}
 }
 
-function totalCartPrice() {
-	var totalProductPriceInCart = [];
+function calculCartPrice(cartPrice) {
+	var cartPrice = [];
 
 	for (let i = 0; i < productsInCart.length; i++) {
 		var totalProductPrice = productsInCart[i].price * productsInCart[i].amount;
-		totalProductPriceInCart.push(totalProductPrice);
+		cartPrice.push(totalProductPrice);
 	}
+
 	const reducer = (accumulator, currentValue) => accumulator + currentValue;
 	document.getElementById("totalCartPrice").textContent =
-		(totalProductPriceInCart.reduce(reducer, 0) / 1000).toFixed(2) + " €";
+		(cartPrice.reduce(reducer, 0) / 1000).toFixed(2) + " €";
+	console.log(cartPrice);
 }
 
 function displayAmountBox() {
@@ -100,8 +102,8 @@ function displayInputs() {
 }
 
 function displayButtons() {
-	if (window.matchMedia("(min-width: 576px)").matches) {
-		for (let i = 0; i < productsInCart.length; i++) {
+	for (let i = 0; i < productsInCart.length; i++) {
+		if (window.matchMedia("(min-width: 576px)").matches) {
 			const productAmountBox = document.getElementById("box-" + i);
 
 			let moreAmountButtons = document.createElement("button");
@@ -120,10 +122,19 @@ function displayButtons() {
 			lessAmountButtons.textContent = "-";
 			productAmountBox.appendChild(moreAmountButtons);
 			productAmountBox.prepend(lessAmountButtons);
+		} else {
+			document
+				.getElementById("input-" + i)
+				.addEventListener("change", function () {
+					productsInCart[i].amount = document.getElementById(
+						"input-" + i
+					).value;
+					sessionStorage.setItem("cart", JSON.stringify(productsInCart));
+					window.location.reload();
+				});
 		}
 	}
 }
-console.log(productsInCart);
 function recoverButtons() {
 	for (let i = 0; i < productsInCart.length; i++) {
 		if (window.matchMedia("(min-width: 576px)").matches) {
@@ -144,19 +155,6 @@ function recoverButtons() {
 						window.location.reload();
 						console.log(productsInCart[i].amount);
 					}
-				});
-		}
-		if (window.matchMedia("(max-width: 576px)").matches) {
-			document
-				.getElementById("input-" + i)
-				.addEventListener("change", function () {
-					productsInCart[i].amount = document.getElementById(
-						"input-" + i
-					).value;
-					sessionStorage.setItem("cart", JSON.stringify(productsInCart));
-					window.location.reload();
-
-					console.log(productsInCart[i].amount);
 				});
 		}
 	}
