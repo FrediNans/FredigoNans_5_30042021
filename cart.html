@@ -8,114 +8,60 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
 		/>
+		<script
+			src="https://kit.fontawesome.com/da14dfdb28.js"
+			crossorigin="anonymous"
+		></script>
 		<link rel="stylesheet" href="scss/style.css" />
-		<link rel="stylesheet" href="scss/stylehard.css" />
 		<script src="./js/cart.js" defer></script>
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-		/>
 		<title>Votre panier</title>
 	</head>
 	<body>
-		<header class="container-fluid d-flex justify-content-start bg-primary">
-			<div class="col-12 col-md-6 col-lg-4">
-				<a href="index.html"
-					><img class="img-fluid" src="image/logo.png" alt="logo Orinoco"
-				/></a>
-			</div>
+		<header class="header">
+			<img class="logo" src="image/logo.png" alt="logo Orinoco" />
+			<div class="header__deco"></div>
 		</header>
-		<main class="container-fluid">
-			<h1 class="text-center mt-3 fw-bold">Votre Panier</h1>
-			<div class="" id="cart">
-				<div class="d-flex fw-bold bg-primary text-center fs-5">
-					<div class="col-3">Référence</div>
-					<div class="col-3">Quantité</div>
-					<div class="col-3">Prix</div>
-					<div class="col-3">Total</div>
+		<main>
+			<h1 class="cart__title">Votre Panier</h1>
+			<div class="cart" id="cart">
+				<div class="cart__headline">
+					<div class="cart__headcolumn">Référence</div>
+					<div class="cart__headcolumn">Quantité</div>
+					<div class="cart__headcolumn">Prix</div>
+					<div class="cart__headcolumnend"></div>
+					<div class="cart__headcolumn">Total</div>
 				</div>
-				<div class="d-flex text-center bg-light fs-4">
-					<div
-						class="d-flex flex-column col-3"
-						id="product__name__column"
-					></div>
-					<div class="d-flex flex-column col-3" id="amount__column"></div>
-					<div class="d-flex flex-column col-3" id="price__column"></div>
-					<div
-						class="d-flex flex-column col-3"
-						id="total__product__price__column"
-					></div>
+				<div class="cart__body">
+					<div class="cart__bodycolumn" id="productNameColumn"></div>
+					<div class="cart__bodycolumn" id="amountColumn"></div>
+					<div class="cart__bodycolumn" id="priceColumn"></div>
+					<div class="cart__erasecolumn" id="eraseButtons"></div>
+					<div class="cart__bodycolumn" id="totalProductPriceColumn"></div>
+				</div>
+
+				<div class="cart__footerline">
+					<div class="cart__totalcase">Total</div>
+					<div id="totalCartPrice" class="cart__totalcase2"></div>
 				</div>
 			</div>
-
-			<div class="text-center d-flex justify-content-end mb-3 fs-3">
-				<div class="col-3 bg-primary fw-bold">Total</div>
-				<div id="totalCartPrice" class="col-3 bg-light fw-bold"></div>
+			<div id="emptyCart" class="d-none">
+				<div class="cart__empty">est vide !</div>
+				<a class="cart__emptybutton" href="index.html">Retour à l'acceuil</a>
 			</div>
 		</main>
-		<footer class="container-fluid bg-primary">
-			<div class="list-group list-group-horizontal-md bg-primary p-3 p-md-5">
-				<a
-					href="#"
-					class="
-						list-group-item list-group-item-action
-						disabled
-						bg-primary
-						shadow-none
-						border-0
-						text-center
-						fs-4
-					"
-					tabindex="-1"
-					aria-disabled="true"
+		<footer class="footer">
+			<div class="footer__deco"></div>
+			<nav class="footer__navbar">
+				<a href="#" class="footer__link" tabindex="-1" aria-disabled="true"
 					><i class="bi bi-envelope"></i> Contactez-nous</a
 				>
-				<a
-					href="#"
-					class="
-						list-group-item list-group-item-action
-						disabled
-						bg-primary
-						shadow-none
-						border-0
-						text-center
-						fs-4
-					"
-					tabindex="-1"
-					aria-disabled="true"
+				<a href="#" class="footer__link" tabindex="-1" aria-disabled="true"
 					><i class="bi bi-file-earmark-ruled"></i> CGV</a
 				>
-				<a
-					href="#"
-					class="
-						list-group-item list-group-item-action
-						disabled
-						bg-primary
-						shadow-none
-						border-0
-						text-center
-						fs-4
-					"
-					tabindex="-1"
-					aria-disabled="true"
-					><i class="bi bi-tree"></i> Bois écoresponsable</a
-				>
-				<a
-					href="#"
-					class="
-						list-group-item list-group-item-action
-						disabled
-						bg-primary
-						shadow-none
-						border-0
-						text-center
-						fs-4
-					"
-					tabindex="-1"
-					aria-disabled="true"
+				<a href="#" class="footer__link" tabindex="-1" aria-disabled="true"
 					><i class="bi bi-truck"></i> Conditions de livraison</a
 				>
-			</div>
+			</nav>
 		</footer>
 	</body>
 </html>

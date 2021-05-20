@@ -1,0 +1,84 @@
+.confirm {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+
+	&__h1 {
+		width: 100%;
+		text-align: center;
+		font-size: 2rem;
+		color: $secondary;
+		font-weight: bold;
+		margin: 2rem 0 0 0;
+	}
+	&__h2 {
+		width: 100%;
+		text-align: center;
+		font-size: 1.6rem;
+		color: $secondary;
+		font-weight: bold;
+		margin: 0;
+	}
+	&__buttonbar {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		margin: 1rem 0 1rem 0;
+	}
+	&__button {
+		width: 70%;
+		text-align: center;
+		text-decoration: none;
+		color: $tertiary;
+		background-color: $secondary;
+		font-size: 1.5rem;
+		padding: 0.5rem 0 0.5rem 0;
+		margin-bottom: 1.5rem;
+		border-radius: 0.5rem;
+		box-shadow: -3px 6px 11px 1px #000000;
+	}
+}
+@media screen and(min-width: 768px) {
+	.confirm {
+		margin-top: 15rem;
+		&__h1 {
+			margin-bottom: 3rem;
+		}
+		&__h2 {
+			margin-bottom: 7rem;
+		}
+		&__button {
+			margin-bottom: 4rem;
+		}
+		&__buttonbar {
+			margin-bottom: 5rem;
+		}
+	}
+}
+@media screen and(min-width: 992px) {
+	.confirm {
+		margin-top: 14rem;
+		&__h1 {
+			margin-bottom: 2rem;
+		}
+		&__h2 {
+			margin-bottom: 3rem;
+		}
+		&__body {
+			width: 60%;
+		}
+		&__button {
+			width: 40%;
+			margin-bottom: 1rem;
+		}
+		&__buttonbar {
+			width: 100%;
+			flex-direction: row;
+			justify-content: space-around;
+			margin-bottom: 3rem;
+		}
+	}
+}

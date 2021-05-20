@@ -8,255 +8,99 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
 		/>
+		<script
+			src="https://kit.fontawesome.com/da14dfdb28.js"
+			crossorigin="anonymous"
+		></script>
 		<link rel="stylesheet" href="scss/style.css" />
-		<link rel="stylesheet" href="scss/stylehard.css" />
 		<script src="./js/product.js" defer></script>
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-		/>
-		<title>Orinoco</title>
+		<title>Appareil</title>
 	</head>
 	<body>
-		<header class="container-fluid d-flex justify-content-start bg-primary">
-			<div class="col-12 col-md-6 col-lg-4">
-				<a href="index.html"
-					><img class="img-fluid" src="image/logo.png" alt="logo Orinoco"
-				/></a>
-			</div>
+		<header class="header">
+			<img class="logo" src="image/logo.png" alt="logo Orinoco" />
+			<div class="header__deco"></div>
 		</header>
 		<main>
-			<div id="main">
-				<div id="product__main__image" class="d-flex flex-column flex-lg-row">
-					<div
-						class="
-							product__image
-							mx-3
-							my-3
-							mt-lg-5
-							mb-lg-auto
-							col-lg-6
-							br2
-							overflow-hidden
-							shadow
-						"
-					>
-						<img class="img-fluid" id="product__image" src="" alt="..." />
-					</div>
-					<div class="my-lg-5">
-						<div class="d-flex flex-column">
-							<div class="d-flex text-center">
-								<h1 class="col-6 fw-bold fs-1" id="product__name"></h1>
-								<div id="product__price" class="fw-bold fs-1 col-6"></div>
-							</div>
-							<p class="mx-3 fs-4" id="product__description"></p>
+			<div id="main" class="productcard">
+				<img class="productcard__image" id="productImage" />
+				<div class="productcard__body">
+					<div class="productcard__name" id="productName"></div>
+					<div id="productPrice" class="productcard__price"></div>
+					<div class="productcard__description" id="productDescription"></div>
 
-							<select
-								class="
-									text-center
-									col-8
-									mx-auto
-									fs-4
-									border-secondary
-									br1
-									shadow
-									my-5
-									fw-bold
-									py-1
-								"
-								name="Choix finition"
-								id="varnish__options"
-							>
-								<option value="">Choix finition</option>
-							</select>
-							<div
-								class="
-									fw-bold
-									fs-3
-									br1
-									col-8 col-lg-6
-									mx-auto
-									my-3 my-lg-4
-									p-0
-									btn-lg
-									shadow
-									text-center
-									d-flex
-									justify-content-between
-									m
-								"
-							>
-								<div
-									id="product__button__less"
-									class="btn btn-primary col-2 br1 fs-2 fw-bold"
-								>
-									-
-								</div>
-								<span class="py-2">Quantité : </span>
-								<input
-									type="text"
-									id="product__amount"
-									value="1"
-									class="py-2 col-1 border-0"
-								/>
-								<div
-									id="product__button__more"
-									class="btn btn-primary col-2 br1 fs-2 fw-bold"
-								>
-									+
-								</div>
-							</div>
-							<button
-								id="cart__button"
-								type="button"
-								class="
-									btn btn-secondary
-									text-white
-									fw-bold
-									fs-3
-									br1
-									col-8 col-lg-6
-									mx-auto
-									my-5
-									btn-lg
-									shadow
-								"
-							>
-								Ajouter au panier
-							</button>
-						</div>
+					<select
+						class="productcard__options"
+						name="Choix finition"
+						id="lensesOptions"
+					>
+						<option value="">Choix finition</option>
+					</select>
+
+					<div class="productcard__amountbar">
+						<button id="productButtonLess" class="productcard__amountbutton">
+							<i class="far fa-minus-square"></i>
+						</button>
+						<span>Quantité : </span>
+						<input
+							class="productcard__amountinput"
+							type="text"
+							id="productAmount"
+							value="1"
+						/>
+						<button class="productcard__amountbutton" id="productButtonMore">
+							<i class="far fa-plus-square"></i>
+						</button>
 					</div>
+
+					<button class="primarybutton" id="cartButton" type="button">
+						Ajouter au panier
+					</button>
 				</div>
 			</div>
 			<div id="errorPage" class="d-none">
-				<div class="container-height d-flex flex-column justify-content-center">
-					<p class="text-center fw-bold my-5 fs-4 col-md-6 col-lg-4 mx-auto">
+				<div class="">
+					<p class="">
 						Nous rencontrons actuellement des problèmes pour accéder à cette
 						référence.
 					</p>
-					<div class="d-flex justify-content-center">
-						<a
-							class="
-								btn-secondary
-								text-white text-center text text-decoration-none
-								px-4
-								br1
-								my-5
-								py-2
-							"
-							href="index.html"
-							>Retour à l'acceuil</a
-						>
+					<div class="">
+						<a class="" href="index.html">Retour à l'acceuil</a>
 					</div>
 				</div>
 			</div>
 			<div id="comfirm__page" class="d-none">
-				<div class="container-height d-flex flex-column justify-content-center">
-					<h1 class="mx-3 my-3 text-center">
-						Produit ajouté au panier avec succès !
-					</h1>
-					<h2 class="mx-5 my-4 text-center">
-						Que souhaitez-vous faire maintenant ?
-					</h2>
-					<div class="d-flex justify-content-center flex-column">
-						<a
-							class="
-								btn btn-secondary
-								col-8 col-lg-4
-								text-white text-center text text-decoration-none
-								px-4
-								br1
-								mb-3
-								mx-auto
-								py-2
-								fs-3
-							"
-							href="index.html"
-							>Choisir un autre produit</a
-						>
-						<a
-							class="
-								btn btn-secondary
-								col-8 col-lg-4
-								text-white text-center text text-decoration-none
-								px-4
-								br1
-								mt-3
-								mb-5
-								mx-auto
-								py-2
-								fs-3
-							"
-							href="cart.html"
-							>Accéder à votre panier</a
-						>
+				<div class="confirm">
+					<div class="confirm__body">
+						<div class="confirm__h1">
+							Produit ajouté au panier avec succès !
+						</div>
+						<div class="confirm__h2">Que souhaitez-vous faire maintenant ?</div>
+						<div class="confirm__buttonbar">
+							<a class="confirm__button" href="index.html"
+								>Choisir un autre produit</a
+							>
+							<a class="confirm__button" href="cart.html"
+								>Accéder à votre panier</a
+							>
+						</div>
 					</div>
 				</div>
 			</div>
 		</main>
-		<footer class="container-fluid bg-primary mt-lg-5">
-			<div class="list-group list-group-horizontal-md bg-primary p-3 p-md-5">
-				<a
-					href="#"
-					class="
-						list-group-item list-group-item-action
-						disabled
-						bg-primary
-						shadow-none
-						border-0
-						text-center
-						fs-4
-					"
-					tabindex="-1"
-					aria-disabled="true"
+		<footer class="footer">
+			<div class="footer__deco"></div>
+			<nav class="footer__navbar">
+				<a href="#" class="footer__link" tabindex="-1" aria-disabled="true"
 					><i class="bi bi-envelope"></i> Contactez-nous</a
 				>
-				<a
-					href="#"
-					class="
-						list-group-item list-group-item-action
-						disabled
-						bg-primary
-						shadow-none
-						border-0
-						text-center
-						fs-4
-					"
-					tabindex="-1"
-					aria-disabled="true"
+				<a href="#" class="footer__link" tabindex="-1" aria-disabled="true"
 					><i class="bi bi-file-earmark-ruled"></i> CGV</a
 				>
-				<a
-					href="#"
-					class="
-						list-group-item list-group-item-action
-						disabled
-						bg-primary
-						shadow-none
-						border-0
-						text-center
-						fs-4
-					"
-					tabindex="-1"
-					aria-disabled="true"
-					><i class="bi bi-tree"></i> Bois écoresponsable</a
-				>
-				<a
-					href="#"
-					class="
-						list-group-item list-group-item-action
-						disabled
-						bg-primary
-						shadow-none
-						border-0
-						text-center
-						fs-4
-					"
-					tabindex="-1"
-					aria-disabled="true"
+				<a href="#" class="footer__link" tabindex="-1" aria-disabled="true"
 					><i class="bi bi-truck"></i> Conditions de livraison</a
 				>
-			</div>
+			</nav>
 		</footer>
 	</body>
 </html>
