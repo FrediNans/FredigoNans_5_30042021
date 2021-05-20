@@ -10,7 +10,7 @@ const id = window.location.search.substring(1);
 
 /// Promise ///
 function getProduct() {
-	return fetch(`https://projet5-orinoco.herokuapp.com/api/furniture/${id}`)
+	return fetch(`https://projet5-orinoco.herokuapp.com/api/cameras/${id}`)
 		.then(function http(httpResponse) {
 			/// Condition used to display an error page if the fetch fails  ///
 			if (httpResponse.ok === false) {
@@ -31,35 +31,35 @@ function getProduct() {
 function displayProduct(product) {
 	const productPriceCalc = (product.price / 1000).toFixed(2) + " €";
 
-	let productOptionSelect = document.getElementById("varnish__options");
-	let options = product.varnish;
+	let productOptionSelect = document.getElementById("lensesOptions");
+	let options = product.lenses;
 
-	options.forEach((color) => {
+	options.forEach((lenses) => {
 		let option = document.createElement("option");
-		option.textContent = color;
-		option.setAttribute("id", color);
+		option.textContent = lenses;
+		option.setAttribute("id", lenses);
 		productOptionSelect.appendChild(option);
 	});
 
 	productImage = document
-		.getElementById("product__image")
+		.getElementById("productImage")
 		.setAttribute("src", product.imageUrl);
-	productName = document.getElementById("product__name").textContent =
-		product.name;
-	productPrice = document.getElementById("product__price").textContent =
+	productName = document.getElementById("productName").textContent =
+		"Réf : " + product.name;
+	productPrice = document.getElementById("productPrice").textContent =
 		productPriceCalc;
 	productDescription = document.getElementById(
-		"product__description"
+		"productDescription"
 	).textContent = product.description;
 }
 
 /// Function used to add product in session storage ///
 function addToCart(product) {
 	const productName = product.name;
-	const addButton = document.getElementById("product__button__more");
-	const removeButton = document.getElementById("product__button__less");
-	const productAmount = document.getElementById("product__amount");
-	const addToCartButton = document.getElementById("cart__button");
+	const addButton = document.getElementById("productButtonMore");
+	const removeButton = document.getElementById("productButtonLess");
+	const productAmount = document.getElementById("productAmount");
+	const addToCartButton = document.getElementById("cartButton");
 	const productInStorage = sessionStorage.getItem("cart");
 
 	/// Button used to remove product in cart ///

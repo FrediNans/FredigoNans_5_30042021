@@ -1,2 +1,16 @@
-@import "../scss/variable_overrides";
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@charset "UTF-8";
+
+// 1. Configuration and helpers
+@import "utils/variables", "utils/mixins";
+
+// 2. Base stuff
+@import "base/base";
+
+// 3. Layout-related sections
+@import "layout/header", "layout/body", "layout/footer";
+
+// 4. Components
+@import "components/components", "components/cards";
+
+// 5. Page-specific styles
+@import "pages/home", "pages/product", "pages/cart";

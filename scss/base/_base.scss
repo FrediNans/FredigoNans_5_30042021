@@ -1,0 +1,26 @@
+/////////////////////////////////////////////////////////////////////////////////
+// This file contains very basic styles. ////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+html {
+	font-size: 16px;
+	background-color: $primary;
+	box-sizing: border-box;
+	font-family: $font-family-base, Arial, Helvetica, sans-serif;
+}
+
+@media screen and (min-width: 1900px) {
+	html {
+		font-size: 25px;
+	}
+}
+@media screen and (min-width: 3800px) {
+	html {
+		font-size: 40px;
+	}
+}
+.d-block {
+	display: block;
+}
+.d-none {
+	display: none;
+}

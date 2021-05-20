@@ -1,0 +1,33 @@
+.header {
+	width: 100%;
+	background-color: $primary;
+	&__deco {
+		width: 80%;
+		height: 5px;
+		background-color: $secondary;
+		margin: 0.5rem auto 0 auto;
+	}
+}
+
+.logo {
+	width: 70%;
+	margin: 1rem 0 0 1rem;
+}
+
+@media screen and(min-width: 768px) {
+	.header {
+		position: fixed;
+		top: 0;
+		z-index: 1;
+	}
+	.logo {
+		width: 40%;
+		margin: 0 0 0 1rem;
+	}
+}
+@media screen and(min-width: 992px) {
+	.logo {
+		width: 30%;
+		margin: 0 0 0 1rem;
+	}
+}

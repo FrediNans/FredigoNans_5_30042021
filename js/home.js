@@ -9,7 +9,7 @@
 
 /// promise ///
 function getItems() {
-	return fetch("https://projet5-orinoco.herokuapp.com/api/furniture")
+	return fetch("https://projet5-orinoco.herokuapp.com/api/cameras")
 		.then(function (httpResponse) {
 			return httpResponse.json();
 		})
@@ -26,10 +26,10 @@ function displayItem(item) {
 	const templateElt = document.getElementById("templateArticle");
 	const cloneElt = document.importNode(templateElt.content, true);
 
-	cloneElt.getElementById("card__image").src = item.imageUrl;
-	cloneElt.getElementById("card__name").textContent = item.name;
-	cloneElt.getElementById("card__id").href = "product.html?" + item._id;
-	cloneElt.getElementById("card__price").textContent =
+	cloneElt.getElementById("cardImage").src = item.imageUrl;
+	cloneElt.getElementById("cardName").textContent = item.name;
+	cloneElt.getElementById("cardId").href = "product.html?" + item._id;
+	cloneElt.getElementById("cardPrice").textContent =
 		(item.price / 1000).toFixed(2) + " €";
 
 	document.getElementById("main").appendChild(cloneElt);

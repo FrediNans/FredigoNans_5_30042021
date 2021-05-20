@@ -21,28 +21,32 @@ var productsInCart = JSON.parse(cart);
 		calculCartPrice();
 		displayInputs();
 		displayButtons();
-		moreAndRemoveButtonsEvent();
+		addAndRemoveButtonsEvent();
+		eraseButtonBox();
+		displayEraseButtons();
+		eraseButtonEvent();
+		showEmptyCartMessage();
 	}
 })();
 /// Function used to display each product in cart ///
 
 function displayProductsAdded() {
 	for (let i = 0; i < productsInCart.length; i++) {
-		const productNameColumn = document.getElementById("product__name__column");
-		const productPriceColumn = document.getElementById("price__column");
+		const productNameColumn = document.getElementById("productNameColumn");
+		const productPriceColumn = document.getElementById("priceColumn");
 		const productTotalPriceColumn = document.getElementById(
-			"total__product__price__column"
+			"totalProductPriceColumn"
 		);
 		const productPrice = (productsInCart[i].price / 1000).toFixed(2) + " €";
 
 		let productName = document.createElement("div");
 		productName.textContent = productsInCart[i].name;
-		productName.setAttribute("class", "box fs-5");
+		productName.setAttribute("class", "cart__case");
 		let price = document.createElement("div");
 		price.textContent = productPrice;
-		price.setAttribute("class", "box fs-5");
+		price.setAttribute("class", "cart__case");
 		let totalProductPrice = document.createElement("div");
-		totalProductPrice.setAttribute("class", "box fs-5");
+		totalProductPrice.setAttribute("class", "cart__case");
 		totalProductPrice.setAttribute("id", "productPrice-" + i);
 
 		productNameColumn.appendChild(productName);
@@ -79,11 +83,11 @@ function calculCartPrice(cartPrice) {
 /// Function used to create divs with a unique id to manage inputs and buttons ///
 function displayAmountBox() {
 	for (let i = 0; i < productsInCart.length; i++) {
-		const productAmountColumn = document.getElementById("amount__column");
+		const productAmountColumn = document.getElementById("amountColumn");
 
 		let amountOfProduct = document.createElement("div");
 		amountOfProduct.setAttribute("id", "box-" + i);
-		amountOfProduct.setAttribute("class", "box d-flex ");
+		amountOfProduct.setAttribute("class", "cart__case ");
 
 		productAmountColumn.appendChild(amountOfProduct);
 	}
@@ -96,18 +100,10 @@ function displayInputs() {
 		let amountInput = document.createElement("input");
 		amountInput.setAttribute("value", productsInCart[i].amount);
 		amountInput.setAttribute("id", "input-" + i);
-		amountInput.setAttribute(
-			"class",
-			"box col-6 col-md-3 col-lg-2 mx-auto border-0 text-center bg-light h-50"
-		);
-		amountInput.setAttribute("min", "1");
-		amountInput.setAttribute("max", "99");
+		amountInput.setAttribute("class", "cart__input");
+		amountInput.setAttribute("type", "number");
 		if (window.matchMedia("(max-width: 576px)").matches) {
-			amountInput.setAttribute(
-				"class",
-				"box col-6 h-50 col-md-3 col-lg-2 mx-auto border-2 border-secondary text-center bg-white br1"
-			);
-			amountInput.setAttribute("type", "number");
+			amountInput.setAttribute("class", "cart__input");
 		}
 
 		productAmountBox.appendChild(amountInput);
@@ -119,19 +115,11 @@ function displayButtons() {
 		const productAmountBox = document.getElementById("box-" + i);
 
 		let moreAmountButtons = document.createElement("button");
-		moreAmountButtons.setAttribute(
-			"class",
-			"text-center moreAndLessAmountButtons shadow-sm btn-secondary br1 border-0 text-white fw-bold"
-		);
+		moreAmountButtons.setAttribute("class", "cart__moreAmountButton");
 		moreAmountButtons.setAttribute("id", "addButton-" + i);
-		moreAmountButtons.textContent = "+";
 		let lessAmountButtons = document.createElement("button");
-		lessAmountButtons.setAttribute(
-			"class",
-			"text-center moreAndLessAmountButtons shadow-sm col-3 h-50 btn-secondary br1 border-0 text-white fw-bold"
-		);
+		lessAmountButtons.setAttribute("class", "cart__lessAmountButton");
 		lessAmountButtons.setAttribute("id", "removeButton-" + i);
-		lessAmountButtons.textContent = "-";
 		productAmountBox.appendChild(moreAmountButtons);
 		productAmountBox.prepend(lessAmountButtons);
 		document.getElementById("input-" + i).addEventListener("", function () {
@@ -144,48 +132,83 @@ function displayButtons() {
 		}
 	}
 }
-function moreAndRemoveButtonsEvent() {
+function addAndRemoveButtonsEvent() {
 	for (let i = 0; i < productsInCart.length; i++) {
-		if (window.matchMedia("(min-width: 576px)").matches) {
-			document
-				.getElementById("addButton-" + i)
-				.addEventListener("click", function () {
-					productsInCart[i].amount++;
+		document
+			.getElementById("addButton-" + i)
+			.addEventListener("click", function () {
+				productsInCart[i].amount++;
+				sessionStorage.setItem("cart", JSON.stringify(productsInCart));
+				calculateTotalProductPrice();
+				calculCartPrice();
+				document.getElementById("input-" + i).value = productsInCart[i].amount;
+			});
+		document
+			.getElementById("removeButton-" + i)
+			.addEventListener("click", function () {
+				if (productsInCart[i].amount > 1) {
+					productsInCart[i].amount--;
+
 					sessionStorage.setItem("cart", JSON.stringify(productsInCart));
 					calculateTotalProductPrice();
 					calculCartPrice();
 					document.getElementById("input-" + i).value =
 						productsInCart[i].amount;
-				});
-			document
-				.getElementById("removeButton-" + i)
-				.addEventListener("click", function () {
-					if (productsInCart[i].amount > 1) {
-						productsInCart[i].amount--;
+				}
+			});
+		document
+			.getElementById("input-" + i)
+			.addEventListener("change", function () {
+				/// ! important, without this condition the number of products can be negative ! ///
+				if (document.getElementById("input-" + i).value < 1) {
+					document.getElementById("input-" + i).value = 1;
+				}
+				productsInCart[i].amount = document.getElementById("input-" + i).value;
+				sessionStorage.setItem("cart", JSON.stringify(productsInCart));
+				calculateTotalProductPrice();
+				calculCartPrice();
+			});
+	}
+}
 
-						sessionStorage.setItem("cart", JSON.stringify(productsInCart));
-						calculateTotalProductPrice();
-						calculCartPrice();
-						document.getElementById("input-" + i).value =
-							productsInCart[i].amount;
-					}
-				});
-		}
-		if (window.matchMedia("(max-width: 576px)").matches) {
-			document
-				.getElementById("input-" + i)
-				.addEventListener("change", function () {
-					/// ! important, without this condition the number of products can be negative ! ///
-					if (document.getElementById("input-" + i).value < 1) {
-						document.getElementById("input-" + i).value = 1;
-					}
-					productsInCart[i].amount = document.getElementById(
-						"input-" + i
-					).value;
-					sessionStorage.setItem("cart", JSON.stringify(productsInCart));
-					calculateTotalProductPrice();
-					calculCartPrice();
-				});
-		}
+function eraseButtonBox() {
+	for (let i = 0; i < productsInCart.length; i++) {
+		const eraseButtonsBox = document.getElementById("eraseButtons");
+
+		let eraseButtons = document.createElement("div");
+		eraseButtons.setAttribute("class", "cart__erasecase");
+		eraseButtons.setAttribute("id", "eraseButtonBox-" + i);
+		eraseButtonsBox.appendChild(eraseButtons);
+	}
+}
+
+function displayEraseButtons() {
+	for (let i = 0; i < productsInCart.length; i++) {
+		const eraseButtonBox = document.getElementById("eraseButtonBox-" + i);
+
+		let eraseButtons = document.createElement("button");
+		eraseButtons.setAttribute("class", "cart__erasebutton");
+		eraseButtons.setAttribute("id", "eraseButton-" + i);
+		eraseButtonBox.appendChild(eraseButtons);
+	}
+}
+
+function eraseButtonEvent() {
+	for (let i = 0; i < productsInCart.length; i++) {
+		const eraseButton = document.getElementById("eraseButton-" + i);
+		eraseButton.addEventListener("click", function () {
+			productsInCart.splice(i, 1);
+			sessionStorage.setItem("cart", JSON.stringify(productsInCart));
+
+			window.location.reload();
+		});
+	}
+}
+
+function showEmptyCartMessage() {
+	const cartPrice = document.getElementById("totalCartPrice");
+	if (cartPrice.textContent === "0.00 €") {
+		document.getElementById("cart").setAttribute("class", "d-none");
+		document.getElementById("emptyCart").setAttribute("class", "d-block");
 	}
 }
