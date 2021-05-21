@@ -1,6 +1,5 @@
 .primarybutton {
-	margin-top: 3rem;
-	margin-bottom: 1rem;
+	margin: 3rem auto 1rem auto;
 	width: 80%;
 	font-size: 1.5rem;
 	color: $tertiary;
@@ -11,6 +10,7 @@
 	border-radius: 0.5rem;
 	font-family: $font-family-base;
 }
+
 @media screen and(min-width: 992px) {
 	.primarybutton {
 		width: 60%;
