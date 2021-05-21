@@ -19,34 +19,48 @@
 	<body>
 		<header class="header">
 			<img class="logo" src="image/logo.png" alt="logo Orinoco" />
+
+			<nav class="header__navbar">
+				<a class="header__cartbutton" href="index.html">
+					<i class="fas fa-camera"></i> Acceuil
+				</a>
+				<a class="header__cartbutton" href="javascript:history.go(-1)">
+					<i class="far fa-arrow-alt-circle-left"></i> Retour
+				</a>
+			</nav>
 			<div class="header__deco"></div>
 		</header>
 		<main>
-			<h1 class="cart__title">Votre Panier</h1>
-			<div class="cart" id="cart">
-				<div class="cart__headline">
-					<div class="cart__headcolumn">Référence</div>
-					<div class="cart__headcolumn">Quantité</div>
-					<div class="cart__headcolumn">Prix</div>
-					<div class="cart__headcolumnend"></div>
-					<div class="cart__headcolumn">Total</div>
-				</div>
-				<div class="cart__body">
-					<div class="cart__bodycolumn" id="productNameColumn"></div>
-					<div class="cart__bodycolumn" id="amountColumn"></div>
-					<div class="cart__bodycolumn" id="priceColumn"></div>
-					<div class="cart__erasecolumn" id="eraseButtons"></div>
-					<div class="cart__bodycolumn" id="totalProductPriceColumn"></div>
-				</div>
+			<div class="cartPage">
+				<h1 class="cart__title">Votre Panier</h1>
+				<div class="cart" id="cart">
+					<div class="cart__headline">
+						<div class="cart__headcolumn">Référence</div>
+						<div class="cart__headcolumn">Quantité</div>
+						<div class="cart__headcolumn">Prix</div>
+						<div class="cart__headcolumnend"></div>
+						<div class="cart__headcolumn">Total</div>
+					</div>
+					<div class="cart__body">
+						<div class="cart__bodycolumn" id="productNameColumn"></div>
+						<div class="cart__bodycolumn" id="amountColumn"></div>
+						<div class="cart__bodycolumn" id="priceColumn"></div>
+						<div class="cart__erasecolumn" id="eraseButtons"></div>
+						<div class="cart__bodycolumn" id="totalProductPriceColumn"></div>
+					</div>
 
-				<div class="cart__footerline">
-					<div class="cart__totalcase">Total</div>
-					<div id="totalCartPrice" class="cart__totalcase2"></div>
+					<div class="cart__footerline">
+						<div class="cart__totalcase">Total</div>
+						<div id="totalCartPrice" class="cart__totalcase2"></div>
+					</div>
+					<div class="cart__orderbuttonbox">
+						<button id="orderButton" class="primarybutton">Commander</button>
+					</div>
 				</div>
-			</div>
-			<div id="emptyCart" class="d-none">
-				<div class="cart__empty">est vide !</div>
-				<a class="cart__emptybutton" href="index.html">Retour à l'acceuil</a>
+				<div id="emptyCart" class="d-none">
+					<div class="cart__empty">est vide !</div>
+					<a class="cart__emptybutton" href="index.html">Retour à l'acceuil</a>
+				</div>
 			</div>
 		</main>
 		<footer class="footer">
