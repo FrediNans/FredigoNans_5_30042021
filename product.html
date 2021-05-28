@@ -43,26 +43,21 @@
 						name="Choix finition"
 						id="lensesOptions"
 					>
-						<option value="">Choix objectif</option>
+						<option value="Aucun" selected>Choix objectif</option>
 					</select>
 
 					<div class="productcard__amountbar">
 						<button id="productButtonLess" class="productcard__amountbutton">
 							<i class="far fa-minus-square"></i>
 						</button>
-						<span>Quantité : </span>
-						<input
-							class="productcard__amountinput"
-							type="text"
-							id="productAmount"
-							value="1"
-						/>
+						<div>Quantité :</div>
+						<div id="productAmount">1</div>
 						<button class="productcard__amountbutton" id="productButtonMore">
 							<i class="far fa-plus-square"></i>
 						</button>
 					</div>
 
-					<button class="primarybutton" id="cartButton" type="button">
+					<button class="primarybutton" id="cartButton">
 						Ajouter au panier
 					</button>
 				</div>

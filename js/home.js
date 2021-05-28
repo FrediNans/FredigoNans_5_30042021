@@ -9,16 +9,19 @@
 
 /// promise ///
 function getItems() {
-	return fetch("https://projet5-orinoco.herokuapp.com/api/cameras")
-		.then(function (httpResponse) {
-			return httpResponse.json();
-		})
-		.then(function (items) {
-			return items;
-		})
-		.catch(function (error) {
-			alert(error);
-		});
+	return (
+		fetch("https://projet5-orinoco.herokuapp.com/api/cameras")
+			// fetch("http://localhost:3000/api/cameras")
+			.then(function (httpResponse) {
+				return httpResponse.json();
+			})
+			.then(function (items) {
+				return items;
+			})
+			.catch(function (error) {
+				alert(error);
+			})
+	);
 }
 
 /// create html bloc for each item in api ///

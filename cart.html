@@ -13,7 +13,7 @@
 			crossorigin="anonymous"
 		></script>
 		<link rel="stylesheet" href="scss/style.css" />
-		<script src="./js/cart.js" defer></script>
+		<script src="./js/cartOpti.js" defer></script>
 		<title>Votre panier</title>
 	</head>
 	<body>
@@ -41,12 +41,31 @@
 						<div class="cart__headcolumnend"></div>
 						<div class="cart__headcolumn">Total</div>
 					</div>
-					<div class="cart__body">
-						<div class="cart__bodycolumn" id="productNameColumn"></div>
-						<div class="cart__bodycolumn" id="amountColumn"></div>
-						<div class="cart__bodycolumn" id="priceColumn"></div>
-						<div class="cart__erasecolumn" id="eraseButtons"></div>
-						<div class="cart__bodycolumn" id="totalProductPriceColumn"></div>
+					<div id="cartBody" class="cart__body">
+						<template id="cartTemplate">
+							<div id="cartProduct-" class="cart__product">
+								<div class="cart__case">
+									<div id="productName-"></div>
+								</div>
+								<div id="productAmount-" class="cart__case">
+									<button
+										class="cart__lessAmountButton"
+										id="cart__lessAmountButton-"
+									></button>
+									<div id="amount-">9</div>
+									<button
+										class="cart__moreAmountButton"
+										id="cart__moreAmountButton-"
+									></button>
+								</div>
+								<div id="productPrice-" class="cart__case">prix</div>
+								<div class="cart__erasecase">
+									<button id="erasebutton-" class="cart__erasebutton"></button>
+								</div>
+								<div id="productTotalPrice-" class="cart__case">prix total</div>
+							</div>
+							<div id="option-" class="cart__option"></div>
+						</template>
 					</div>
 
 					<div class="cart__footerline">
