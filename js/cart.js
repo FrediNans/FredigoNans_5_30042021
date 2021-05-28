@@ -67,7 +67,7 @@ function calculateTotalProductPrice() {
 
 /// Function used to calculate total price of cart ///
 function calculCartPrice(cartPrice) {
-	var cartPrice = [];
+	let cartPrice = [];
 
 	for (let i = 0; i < productsInCart.length; i++) {
 		var totalProductPrice = productsInCart[i].price * productsInCart[i].amount;

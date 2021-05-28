@@ -468,7 +468,7 @@ html {
   justify-content: space-between;
   background-color: #575757;
   color: #fff;
-  height: 30px;
+  height: 40px;
   font-size: 1.3rem;
 }
 .cart__headcolumn {
@@ -483,11 +483,11 @@ html {
 }
 .cart__body {
   display: flex;
-}
-.cart__bodycolumn {
-  display: flex;
   flex-direction: column;
-  width: 23%;
+}
+.cart__product {
+  display: flex;
+  width: 100%;
 }
 .cart__erasecolumn {
   display: flex;
@@ -498,8 +498,8 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80px;
-  width: 100%;
+  height: 65px;
+  width: 23%;
   text-align: center;
   font-size: 1.3rem;
 }
@@ -507,15 +507,8 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 80px;
-}
-.cart__input {
-  width: 50%;
-  height: 50%;
-  text-align: center;
-  font-weight: bold;
-  color: #575757;
+  width: 8%;
+  height: 65px;
 }
 .cart__erasebutton {
   width: 20px;
@@ -530,6 +523,13 @@ html {
   font-family: "Font Awesome 5 Free";
   content: "";
 }
+.cart__option {
+  width: 100%;
+  text-align: center;
+  color: #575757;
+  font-size: 1.3rem;
+  border-bottom: 1px solid #575757;
+}
 .cart__footerline {
   display: flex;
   justify-content: flex-end;
@@ -542,6 +542,7 @@ html {
   height: 30px;
   width: 23%;
   text-align: center;
+  font-size: 1.3rem;
   color: #fff;
   background-color: #575757;
 }
@@ -551,6 +552,7 @@ html {
   align-items: center;
   height: 30px;
   width: 23%;
+  font-size: 1.3rem;
   font-weight: bold;
   text-align: center;
 }
@@ -579,6 +581,42 @@ html {
   justify-content: center;
   margin-bottom: 2rem;
 }
+.cart__moreAmountButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #e8e8e8;
+}
+.cart__moreAmountButton::before {
+  width: 30px;
+  height: 30px;
+  color: #575757;
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: "Font Awesome 5 Free";
+  content: "";
+}
+.cart__lessAmountButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #e8e8e8;
+}
+.cart__lessAmountButton::before {
+  width: 30px;
+  height: 30px;
+  color: #575757;
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: "Font Awesome 5 Free";
+  content: "";
+}
 
 @media screen and (min-width: 768px) {
   .cart {
@@ -588,42 +626,6 @@ html {
   }
   .cart__title {
     margin-top: 14rem;
-  }
-  .cart__moreAmountButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 30px;
-    border: none;
-    background-color: #e8e8e8;
-  }
-  .cart__moreAmountButton::before {
-    width: 30px;
-    height: 30px;
-    color: #575757;
-    font-size: 1.5rem;
-    text-align: center;
-    font-family: "Font Awesome 5 Free";
-    content: "";
-  }
-  .cart__lessAmountButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 30px;
-    border: none;
-    background-color: #e8e8e8;
-  }
-  .cart__lessAmountButton::before {
-    width: 30px;
-    height: 30px;
-    color: #575757;
-    font-size: 1.5rem;
-    text-align: center;
-    font-family: "Font Awesome 5 Free";
-    content: "";
   }
   .cart__erasebutton {
     display: flex;
