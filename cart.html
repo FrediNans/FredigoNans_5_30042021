@@ -13,6 +13,7 @@
 			crossorigin="anonymous"
 		></script>
 		<link rel="stylesheet" href="scss/style.css" />
+		<script src="./js/config.js" defer></script>
 		<script src="./js/cartOpti.js" defer></script>
 		<title>Votre panier</title>
 	</head>
@@ -31,7 +32,7 @@
 			<div class="header__deco"></div>
 		</header>
 		<main>
-			<div class="cartPage">
+			<section id="cartPage" class="cartPage d-block">
 				<h1 class="cart__title">Votre Panier</h1>
 				<div class="cart" id="cart">
 					<div class="cart__headline">
@@ -67,7 +68,6 @@
 							<div id="option-" class="cart__option"></div>
 						</template>
 					</div>
-
 					<div class="cart__footerline">
 						<div class="cart__totalcase">Total</div>
 						<div id="totalCartPrice" class="cart__totalcase2"></div>
@@ -80,7 +80,78 @@
 					<div class="cart__empty">est vide !</div>
 					<a class="cart__emptybutton" href="index.html">Retour à l'acceuil</a>
 				</div>
-			</div>
+			</section>
+			<section id="orderPage" class="d-none">
+				<h2 id="formtitle">Adresse de livraison</h2>
+				<form class="form" name="contact">
+					<!--action="confirm.html"-->
+					<div class="formContainer">
+						Nom *:<input
+							class="inputText"
+							type="text"
+							name="nom"
+							id="firstName"
+						/>
+					</div>
+					<div id="firstNameError" class="d-none errorMessage">
+						Veuillez renseigner un nom valide.
+					</div>
+					<div class="formContainer">
+						Prénom *:<input
+							class="inputText"
+							type="text"
+							name="prénom"
+							id="lastName"
+						/>
+					</div>
+					<div id="lastNameError" class="d-none errorMessage">
+						Veuillez renseigner un prénom valide.
+					</div>
+					<div class="formContainer">
+						Adresse *:<textarea
+							type="text"
+							name="addresse"
+							id="address"
+						></textarea>
+					</div>
+					<div id="addressError" class="d-none errorMessage">
+						Veuillez renseigner une adresse valide.
+					</div>
+					<div class="formContainer">
+						Code postal *:<input
+							type="text"
+							name="codePostal"
+							id="postalCode"
+						/>
+					</div>
+					<div id="postalError" class="d-none errorMessage">
+						Veuillez renseigner un code postal valide.(ex: 31200)
+					</div>
+					<div class="formContainer">
+						Ville *:<input
+							class="inputText"
+							type="text"
+							name="ville"
+							id="city"
+						/>
+					</div>
+					<div id="cityError" class="d-none errorMessage">
+						Veuillez renseigner un nom de ville valide.
+					</div>
+					<div class="formContainer">
+						Email *:<input type="text" name="email" id="email" />
+					</div>
+					<div id="emailError" class="d-none errorMessage">
+						Veuillez renseigner un email valide. (ex: monemail@mail.com)
+					</div>
+					<div>*Champ obligatoire</div>
+				</form>
+				<div class="cart__orderbuttonbox">
+					<button id="validform" class="primarybutton" onclick="postRequest()">
+						Valider
+					</button>
+				</div>
+			</section>
 		</main>
 		<footer class="footer">
 			<div class="footer__deco"></div>

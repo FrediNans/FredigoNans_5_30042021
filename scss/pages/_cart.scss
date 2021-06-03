@@ -207,5 +207,117 @@
 		&__emptybutton {
 			width: 20%;
 		}
+		&__title {
+			font-size: 2rem;
+		}
+	}
+}
+
+.form {
+	width: 90%;
+	margin: auto;
+}
+textarea {
+	width: 50%;
+	height: 2rem;
+	padding-left: 1rem;
+	margin-left: 1rem;
+	border: 1px solid $secondary;
+	border-radius: 0.3rem;
+}
+input {
+	width: 55%;
+	height: 2rem;
+	padding-left: 1rem;
+	margin-left: 1rem;
+	border: 1px solid $secondary;
+	border-radius: 0.3rem;
+}
+.validInput {
+	background: url(checkok.webp) 98% center no-repeat;
+
+	background-color: #ffffff;
+	color: rgb(1, 204, 1);
+	border-color: rgb(1, 204, 1);
+}
+.invalidInput {
+	background: url(cross.webp) 98% center no-repeat;
+	background-color: #ffffff;
+	color: red;
+	box-shadow: 0 0 5px red;
+}
+.formContainer {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	width: 100%;
+	align-items: center;
+	margin-top: 1rem;
+	font-family: $font-family-base;
+	font-size: 1.2rem;
+	&:last-child {
+		justify-self: right;
+	}
+}
+#address {
+	height: 2.2rem;
+	width: 55%;
+	font-family: $font-family-base;
+	font-size: 1.2rem;
+	line-height: 1.2rem;
+}
+.errorMessage {
+	width: 100%;
+	color: red;
+	text-align: right;
+}
+#firstName {
+	font-family: $font-family-base;
+	font-size: 1.2rem;
+}
+#lastName {
+	font-family: $font-family-base;
+	font-size: 1.2rem;
+}
+
+#codePostal {
+	font-family: $font-family-base;
+	font-size: 1.2rem;
+}
+#city {
+	font-family: $font-family-base;
+	font-size: 1.2rem;
+}
+#email {
+	font-family: $font-family-base;
+	font-size: 1.2rem;
+}
+#validform {
+	width: 40%;
+}
+#formtitle {
+	text-align: center;
+	color: $secondary;
+}
+@media screen and(min-width: 768px) {
+	#formtitle {
+		margin-top: 14rem;
+	}
+	#orderPage {
+		width: 70%;
+		margin: auto;
+	}
+}
+@media screen and(min-width: 992px) {
+	#formtitle {
+		margin-top: 16rem;
+		font-size: 2rem;
+	}
+	#orderPage {
+		width: 40%;
+		margin: auto;
+	}
+	.formContainer {
+		font-size: 1.5rem;
 	}
 }

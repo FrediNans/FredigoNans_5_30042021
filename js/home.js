@@ -10,7 +10,7 @@
 /// promise ///
 function getItems() {
 	return (
-		fetch("https://projet5-orinoco.herokuapp.com/api/cameras")
+		fetch(`${apiUrl}/api/cameras`)
 			// fetch("http://localhost:3000/api/cameras")
 			.then(function (httpResponse) {
 				return httpResponse.json();

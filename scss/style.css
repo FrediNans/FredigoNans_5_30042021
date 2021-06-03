@@ -668,4 +668,178 @@ html {
   .cart__emptybutton {
     width: 20%;
   }
+  .cart__title {
+    font-size: 2rem;
+  }
+}
+.form {
+  width: 90%;
+  margin: auto;
+}
+
+textarea {
+  width: 50%;
+  height: 2rem;
+  padding-left: 1rem;
+  margin-left: 1rem;
+  border: 1px solid #575757;
+  border-radius: 0.3rem;
+}
+
+input {
+  width: 55%;
+  height: 2rem;
+  padding-left: 1rem;
+  margin-left: 1rem;
+  border: 1px solid #575757;
+  border-radius: 0.3rem;
+}
+
+.validInput {
+  background: url(checkok.webp) 98% center no-repeat;
+  background-color: #ffffff;
+  color: #01cc01;
+  border-color: #01cc01;
+}
+
+.invalidInput {
+  background: url(cross.webp) 98% center no-repeat;
+  background-color: #ffffff;
+  color: red;
+  box-shadow: 0 0 5px red;
+}
+
+.formContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  margin-top: 1rem;
+  font-family: "Harmattan";
+  font-size: 1.2rem;
+}
+.formContainer:last-child {
+  justify-self: right;
+}
+
+#address {
+  height: 2.2rem;
+  width: 55%;
+  font-family: "Harmattan";
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+}
+
+.errorMessage {
+  width: 100%;
+  color: red;
+  text-align: right;
+}
+
+#firstName {
+  font-family: "Harmattan";
+  font-size: 1.2rem;
+}
+
+#lastName {
+  font-family: "Harmattan";
+  font-size: 1.2rem;
+}
+
+#codePostal {
+  font-family: "Harmattan";
+  font-size: 1.2rem;
+}
+
+#city {
+  font-family: "Harmattan";
+  font-size: 1.2rem;
+}
+
+#email {
+  font-family: "Harmattan";
+  font-size: 1.2rem;
+}
+
+#validform {
+  width: 40%;
+}
+
+#formtitle {
+  text-align: center;
+  color: #575757;
+}
+
+@media screen and (min-width: 768px) {
+  #formtitle {
+    margin-top: 14rem;
+  }
+
+  #orderPage {
+    width: 70%;
+    margin: auto;
+  }
+}
+@media screen and (min-width: 992px) {
+  #formtitle {
+    margin-top: 16rem;
+    font-size: 2rem;
+  }
+
+  #orderPage {
+    width: 40%;
+    margin: auto;
+  }
+
+  .formContainer {
+    font-size: 1.5rem;
+  }
+}
+#confirmTitle {
+  text-align: center;
+  color: #575757;
+}
+
+#orderId {
+  color: #575757;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+#bill {
+  color: #575757;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  #confirmTitle {
+    margin-top: 16rem;
+  }
+
+  #confirmContainer {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 5rem;
+  }
+
+  #orderId {
+    font-size: 1.5rem;
+  }
+
+  #bill {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  #confirmTitle {
+    margin-top: 20rem;
+  }
+
+  #confirmContainer {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 5rem;
+  }
 }/*# sourceMappingURL=style.css.map */
