@@ -21,48 +21,37 @@ displayHtmlContent = () => {
 		const price = (product.price / 1000).toFixed(2) + " €";
 		const totalPrice =
 			((product.price * product.amount) / 1000).toFixed(2) + " €";
-
 		cloneElt
 			.getElementById("cartProduct-")
 			.setAttribute("id", "cartProduct-" + index);
-
 		cloneElt.getElementById("productName-").textContent = product.name;
 		cloneElt.getElementById("productName-").setAttribute("id", product.id);
-
 		cloneElt.getElementById("option-").textContent =
 			"Objectif: " + product.option;
 		cloneElt.getElementById("option-").setAttribute("id", "option-" + index);
-
 		const functionToSubstract = `substractProduct(${index})`;
 		cloneElt
 			.getElementById("cart__lessAmountButton-")
 			.setAttribute("onclick", functionToSubstract);
-
 		cloneElt.getElementById("amount-").textContent = product.amount;
 		cloneElt.getElementById("amount-").setAttribute("id", "amount-" + index);
-
 		const functionToAdd = `addProduct(${index})`;
 		cloneElt
 			.getElementById("cart__moreAmountButton-")
 			.setAttribute("onclick", functionToAdd);
-
 		const functionToErase = `eraseProduct(${index})`;
 		cloneElt
 			.getElementById("erasebutton-")
 			.setAttribute("onclick", functionToErase);
-
 		cloneElt.getElementById("productPrice-").textContent = price;
 		cloneElt
 			.getElementById("productPrice-")
 			.setAttribute("id", "productPrice-" + index);
-
 		cloneElt.getElementById("productTotalPrice-").textContent = totalPrice;
 		cloneElt
 			.getElementById("productTotalPrice-")
 			.setAttribute("id", "productTotalPrice-" + index);
-
 		document.getElementById("cartBody").appendChild(cloneElt);
-
 		const orderButton = document.getElementById("orderButton");
 		orderButton.setAttribute("onclick", "order()");
 	});
@@ -118,13 +107,11 @@ const cartPrice = JSON.parse(sessionStorage.getItem("cartPrice"));
 /// Calcul cart price and push result in storage ///
 calculateCartPrice = () => {
 	let totalPrice = [];
-
 	cart.forEach((product) => {
 		const index = cart.indexOf(product);
 		const totalProductPrice = cart[index].amount * cart[index].price;
 		totalPrice.push(totalProductPrice);
 	});
-
 	const reducer = (accumulator, currentValue) => accumulator + currentValue;
 	const htmlCartPrice = document.getElementById("totalCartPrice");
 	htmlCartPrice.textContent =
@@ -133,7 +120,6 @@ calculateCartPrice = () => {
 		"cartPrice",
 		JSON.stringify(totalPrice.reduce(reducer, 0))
 	);
-
 	showEmptyCartMessage();
 };
 
@@ -176,6 +162,7 @@ let checkAddress = (address) => {
 		return false;
 	}
 };
+
 let checkPostalCode = (postalCode) => {
 	const postalcodeFormat = /^(F-)?((2[A|B])|[0-9]{2})[0-9]{3}$/;
 	if (postalCode.value.match(postalcodeFormat)) {
@@ -204,7 +191,6 @@ let checkValue = () => {
 	const postalCodeErrorMessage = document.getElementById("postalError");
 	const cityErrorMessage = document.getElementById("cityError");
 	const emailErrorMessage = document.getElementById("emailError");
-
 	for (input of form) {
 		if (input == " ") {
 			return false;
@@ -248,6 +234,11 @@ let checkValue = () => {
 	}
 	return true;
 };
+
+form.addEventListener("input", () => {
+	checkValue();
+});
+
 let postRequest = async () => {
 	const contact = {
 		firstName: form.firstName.value,
@@ -273,7 +264,6 @@ let postRequest = async () => {
 		if (response.ok) {
 			saveResponse = await response.json();
 			sessionStorage.setItem("response", JSON.stringify(saveResponse));
-
 			const openPage = (window.location = "confirm.html");
 			openPage = await saveResponse;
 		} else {

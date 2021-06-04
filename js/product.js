@@ -15,19 +15,15 @@ function getProduct() {
 			//return fetch(`http://localhost:3000/api/cameras/${id}`)
 			.then(function http(httpResponse) {
 				/// Condition used to display an error page if the fetch fails  ///
-
 				if (httpResponse.ok === false) {
 					document.getElementById("errorPage").setAttribute("class", "d-block");
 					document.getElementById("main").setAttribute("class", "d-none");
+				} else {
+					return httpResponse.json();
 				}
-				return httpResponse.json();
 			})
-			.then(function (product) {
-				return product;
-			})
-			.catch(function (error) {
-				console.log(error);
-			})
+			.then((product) => product)
+			.catch((error) => console.log(error))
 	);
 }
 
@@ -41,27 +37,20 @@ let displayHtmlContent = (product) => {
 		option.setAttribute("id", lenses);
 		productOptionSelect.appendChild(option);
 	});
-
 	const productImage = document.getElementById("productImage");
 	productImage.setAttribute("src", product.imageUrl);
-
 	const productName = document.getElementById("productName");
 	productName.textContent = "Réf : " + product.name;
-
 	const priceInEuro = (product.price / 1000).toFixed(2) + " €";
 	const productPrice = document.getElementById("productPrice");
 	productPrice.textContent = priceInEuro;
-
 	const productDescription = document.getElementById("productDescription");
 	productDescription.textContent = product.description;
-
 	/// Assign function to button ///
 	const substractButton = document.getElementById("productButtonLess");
 	substractButton.setAttribute("onclick", "substractProduct()");
-
 	const addButton = document.getElementById("productButtonMore");
 	addButton.setAttribute("onclick", "addProduct()");
-
 	const addToCartButton = document.getElementById("cartButton");
 	addToCartButton.setAttribute("onclick", "addToCart()");
 };
@@ -106,7 +95,6 @@ let addToCart = () => {
 	const selectOption = document.getElementById("lensesOptions");
 	const index = selectOption.selectedIndex;
 	currentProduct.option = selectOption[index].value;
-
 	if (cart !== null) {
 		updateProductInCart();
 		sessionStorage.setItem("cart", JSON.stringify(cart));
@@ -115,7 +103,6 @@ let addToCart = () => {
 		cart.push(currentProduct);
 		sessionStorage.setItem("cart", JSON.stringify(cart));
 	}
-
 	/// Open confirmation page ///
 	document.getElementById("comfirm__page").setAttribute("class", "d-block");
 	document.getElementById("main").setAttribute("class", "d-none");

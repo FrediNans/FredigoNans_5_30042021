@@ -1,39 +1,27 @@
 /// function to be used asynchronously with the promise ///
 (async function () {
-	const items = await getItems(); /// await fetch ///
-
-	for (item of items) {
-		displayItem(item); /// loop use to chain each object of api ///
+	const products = await getProducts(); /// await fetch ///
+	for (product of products) {
+		displayProduct(product); /// loop use to chain each object of api ///
 	}
 })();
 
 /// promise ///
-function getItems() {
-	return (
-		fetch(`${apiUrl}/api/cameras`)
-			// fetch("http://localhost:3000/api/cameras")
-			.then(function (httpResponse) {
-				return httpResponse.json();
-			})
-			.then(function (items) {
-				return items;
-			})
-			.catch(function (error) {
-				alert(error);
-			})
-	);
+function getProducts() {
+	return fetch(`${apiUrl}/api/cameras`)
+		.then((httpResponse) => httpResponse.json())
+		.then((products) => products)
+		.catch((error) => alert(error));
 }
 
 /// create html bloc for each item in api ///
-function displayItem(item) {
+function displayProduct(product) {
 	const templateElt = document.getElementById("templateArticle");
 	const cloneElt = document.importNode(templateElt.content, true);
-
-	cloneElt.getElementById("cardImage").src = item.imageUrl;
-	cloneElt.getElementById("cardName").textContent = item.name;
-	cloneElt.getElementById("cardId").href = "product.html?" + item._id;
+	cloneElt.getElementById("cardImage").src = product.imageUrl;
+	cloneElt.getElementById("cardName").textContent = product.name;
+	cloneElt.getElementById("cardId").href = "product.html?" + product._id;
 	cloneElt.getElementById("cardPrice").textContent =
-		(item.price / 1000).toFixed(2) + " €";
-
+		(product.price / 1000).toFixed(2) + " €";
 	document.getElementById("main").appendChild(cloneElt);
 }
