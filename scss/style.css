@@ -76,11 +76,11 @@ html {
     top: 0;
     z-index: 1;
     justify-content: flex-start;
-    flex-direction: column;
     align-items: center;
   }
   .header__deco {
     width: 90%;
+    margin: auto;
   }
   .header__navbar {
     width: 90%;
@@ -102,6 +102,55 @@ html {
   .logo {
     width: 30%;
     margin: 0 0 0 1rem;
+  }
+}
+#errorPage {
+  font-size: 1.5rem;
+  text-align: center;
+  color: red;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+#returnHomeButton {
+  text-decoration: none;
+  padding: 0 1rem 0 1rem;
+  border: 1px solid white;
+}
+
+.errorButtonContainer {
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  #errorPage {
+    margin: 19rem auto 10rem auto;
+    width: 70%;
+    font-size: 2rem;
+  }
+
+  #returnHomeButton {
+    font-size: 2rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  #errorPage {
+    margin: 21rem auto 10rem auto;
+  }
+}
+@media screen and (min-width: 1280px) {
+  #errorPage {
+    margin: 16rem auto 4rem auto;
+  }
+}
+@media screen and (min-width: 1920px) {
+  #errorPage {
+    margin: 15rem auto 3.5rem auto;
+  }
+}
+@media screen and (min-width: 3840px) {
+  #errorPage {
+    margin: 21rem auto 6rem auto;
   }
 }
 .footer {
@@ -157,12 +206,54 @@ html {
   box-shadow: -3px 6px 11px 1px #000000;
   background-color: #575757;
   border-radius: 0.5rem;
+  border: 1px solid white;
   font-family: "Harmattan";
+  transition: all 0.3s;
+}
+.primarybutton:hover {
+  transform: scale(1.1);
+  opacity: 0.7;
 }
 
 @media screen and (min-width: 992px) {
   .primarybutton {
     width: 60%;
+  }
+}
+.loaders {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  margin: 0;
+  z-index: 1;
+  background-color: #e8e8e8;
+  opacity: 1;
+}
+
+.hide {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  margin: 0;
+  z-index: 1;
+  background-color: #e8e8e8;
+  opacity: 1;
+  animation: hiden 1s forwards;
+}
+
+@keyframes hiden {
+  100% {
+    z-index: -1;
+    opacity: 0;
+    display: none;
   }
 }
 .home-card {
@@ -211,6 +302,11 @@ html {
   font-size: 1.5rem;
   font-weight: bold;
   color: #fff;
+  transition: all 0.3s;
+}
+.home-card__link:hover {
+  transform: scale(1.1);
+  opacity: 0.7;
 }
 
 @media screen and (min-width: 768px) {
@@ -260,15 +356,24 @@ html {
 }
 .productcard__options {
   font-family: "Harmattan";
-  margin-top: 1rem;
   color: #fff;
   text-align: center;
   text-align-last: center;
   font-size: 1.5rem;
-  width: 80%;
+  width: 50%;
+  border: 1px solid white;
   border-radius: 0.5rem;
   background-color: #575757;
   box-shadow: -3px 6px 11px 1px #000000;
+}
+.productcard__optionscontainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 1rem;
 }
 .productcard__amountbutton {
   height: 45px;
@@ -311,20 +416,26 @@ html {
   .productcard__options {
     width: 51%;
   }
+  .productcard__optionscontainer {
+    width: 60%;
+    font-size: 1.8rem;
+  }
   .productcard__amountbar {
     width: 51%;
+    margin-top: 2rem;
   }
 
   #cartButton {
     width: 51%;
+    margin-top: 2rem;
   }
 }
 @media screen and (min-width: 992px) {
   .productcard {
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 15rem;
-    width: 80%;
+    margin-top: 17rem;
+    width: 90%;
   }
   .productcard__body {
     width: 50%;
@@ -335,13 +446,62 @@ html {
     height: 22rem;
   }
   .productcard__options {
+    width: 40%;
+  }
+  .productcard__description {
+    width: 90%;
+  }
+  .productcard__optionscontainer {
     width: 60%;
   }
   .productcard__amountbar {
     width: 60%;
+    margin-top: 1rem;
   }
 
   #cartButton {
+    width: 60%;
+    margin-top: 1rem;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .productcard {
+    margin-top: 15.5rem;
+  }
+  .productcard__options {
+    width: 50%;
+  }
+  .productcard__optionscontainer {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .productcard {
+    margin-top: 16.8rem;
+  }
+  .productcard__options {
+    width: 50%;
+  }
+  .productcard__optionscontainer {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .productcard {
+    margin-top: 15rem;
+  }
+  .productcard__options {
+    width: 50%;
+  }
+  .productcard__optionscontainer {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 3840px) {
+  .productcard {
+    margin-top: 17.5rem;
+  }
+  .productcard__optionscontainer {
     width: 60%;
   }
 }
@@ -351,7 +511,7 @@ html {
 }
 
 .home-title {
-  margin: 1rem 0.5rem 1rem 0.5rem;
+  margin: 1rem 0 1rem 0;
   text-align: center;
   font-size: 3rem;
   color: #575757;
@@ -406,16 +566,14 @@ html {
   margin: 1rem 0 1rem 0;
 }
 .confirm__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 70%;
   text-align: center;
   text-decoration: none;
-  color: #fff;
-  background-color: #575757;
   font-size: 1.5rem;
-  padding: 0.5rem 0 0.5rem 0;
   margin-bottom: 1.5rem;
-  border-radius: 0.5rem;
-  box-shadow: -3px 6px 11px 1px #000000;
 }
 
 @media screen and (min-width: 768px) {
@@ -497,6 +655,15 @@ html {
 .cart__case {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 65px;
+  width: 23%;
+  text-align: center;
+  font-size: 1.3rem;
+}
+.cart__amountcase {
+  display: flex;
+  justify-content: space-around;
   align-items: center;
   height: 65px;
   width: 23%;
@@ -626,6 +793,7 @@ html {
   }
   .cart__title {
     margin-top: 14rem;
+    font-size: 2.5rem;
   }
   .cart__erasebutton {
     display: flex;
@@ -639,19 +807,36 @@ html {
     height: 30px;
     font-size: 1.5rem;
   }
-  .cart__input {
-    border: none;
-    background-color: #e8e8e8;
-    font-size: 1.2rem;
-  }
   .cart__headline {
     font-size: 1.8rem;
   }
   .cart__case {
     font-size: 1.8rem;
+    height: 100px;
+  }
+  .cart__amountcase {
+    font-size: 1.8rem;
+    height: 100px;
+  }
+  .cart__erasecase {
+    font-size: 1.8rem;
+    height: 100px;
   }
   .cart__emptybutton {
     width: 30%;
+  }
+  .cart__option {
+    font-size: 1.5rem;
+  }
+  .cart__totalcase {
+    height: 2.5rem;
+    width: 23%;
+    font-size: 1.8rem;
+  }
+  .cart__totalcase2 {
+    height: 2.5rem;
+    width: 23%;
+    font-size: 1.8rem;
   }
 }
 #orderButton {
@@ -670,6 +855,20 @@ html {
   }
   .cart__title {
     font-size: 2rem;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .cart {
+    font-size: 2rem;
+  }
+  .cart__title {
+    font-size: 3rem;
+  }
+  .cart__option {
+    font-size: 1.8rem;
+  }
+  .cart__headline {
+    height: 3rem;
   }
 }
 .form {

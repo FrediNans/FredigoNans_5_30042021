@@ -1,12 +1,9 @@
 /// Recover and parse cart in session storage ///
-let cart = JSON.parse(sessionStorage.getItem("cart"));
+const cart = JSON.parse(sessionStorage.getItem("cart"));
 
 /// display empty message when cart in storage is null ///
 window.addEventListener("load", () => {
-	if (cart === null) {
-		document.getElementById("cart").setAttribute("class", "d-none");
-		document.getElementById("emptyCart").setAttribute("class", "d-block");
-	} else {
+	if (checkIfCartIsEmpty() === false) {
 		displayHtmlContent();
 		calculateCartPrice();
 	}
@@ -18,48 +15,55 @@ displayHtmlContent = () => {
 		const index = cart.indexOf(product);
 		const templateElt = document.getElementById("cartTemplate");
 		const cloneElt = document.importNode(templateElt.content, true);
-		const price = (product.price / 1000).toFixed(2) + " €";
-		const totalPrice =
+
+		const priceInEuro = (product.price / 1000).toFixed(2) + " €";
+		const totalPriceInEuro =
 			((product.price * product.amount) / 1000).toFixed(2) + " €";
-		cloneElt
-			.getElementById("cartProduct-")
-			.setAttribute("id", "cartProduct-" + index);
-		cloneElt.getElementById("productName-").textContent = product.name;
-		cloneElt.getElementById("productName-").setAttribute("id", product.id);
-		cloneElt.getElementById("option-").textContent =
-			"Objectif: " + product.option;
-		cloneElt.getElementById("option-").setAttribute("id", "option-" + index);
-		const functionToSubstract = `substractProduct(${index})`;
-		cloneElt
-			.getElementById("cart__lessAmountButton-")
-			.setAttribute("onclick", functionToSubstract);
-		cloneElt.getElementById("amount-").textContent = product.amount;
-		cloneElt.getElementById("amount-").setAttribute("id", "amount-" + index);
-		const functionToAdd = `addProduct(${index})`;
-		cloneElt
-			.getElementById("cart__moreAmountButton-")
-			.setAttribute("onclick", functionToAdd);
-		const functionToErase = `eraseProduct(${index})`;
-		cloneElt
-			.getElementById("erasebutton-")
-			.setAttribute("onclick", functionToErase);
-		cloneElt.getElementById("productPrice-").textContent = price;
-		cloneElt
-			.getElementById("productPrice-")
-			.setAttribute("id", "productPrice-" + index);
-		cloneElt.getElementById("productTotalPrice-").textContent = totalPrice;
-		cloneElt
-			.getElementById("productTotalPrice-")
-			.setAttribute("id", "productTotalPrice-" + index);
+
+		const productBox = cloneElt.getElementById("cartProduct-");
+		productBox.setAttribute("id", "cartProduct-" + index);
+
+		const productName = cloneElt.getElementById("productName-");
+		productName.textContent = product.name;
+		productName.setAttribute("id", product.id);
+
+		const productOption = cloneElt.getElementById("option-");
+		productOption.textContent = "Objectif: " + product.option;
+		productOption.setAttribute("id", "option-" + index);
+
+		const substractButton = cloneElt.getElementById("cart__lessAmountButton-");
+		substractButton.setAttribute("onclick", `substractProduct(${index})`);
+		substractButton.setAttribute("id", "cart__lessAmountButton-" + index);
+
+		const productAmount = cloneElt.getElementById("amount-");
+		productAmount.textContent = product.amount;
+		productAmount.setAttribute("id", "amount-" + index);
+
+		const addButton = cloneElt.getElementById("cart__moreAmountButton-");
+		addButton.setAttribute("onclick", `addProduct(${index})`);
+		addButton.setAttribute("id", "cart__moreAmountButton-" + index);
+
+		const eraseButton = cloneElt.getElementById("erasebutton-");
+		eraseButton.setAttribute("onclick", `eraseProduct(${index})`);
+		eraseButton.setAttribute("id", "erasebutton-" + index);
+
+		const productPrice = cloneElt.getElementById("productPrice-");
+		productPrice.textContent = priceInEuro;
+		productPrice.setAttribute("id", "productPrice-" + index);
+
+		const productTotalPrice = cloneElt.getElementById("productTotalPrice-");
+		productTotalPrice.textContent = totalPriceInEuro;
+		productTotalPrice.setAttribute("id", "productTotalPrice-" + index);
+
 		document.getElementById("cartBody").appendChild(cloneElt);
-		const orderButton = document.getElementById("orderButton");
-		orderButton.setAttribute("onclick", "order()");
 	});
 };
 
 /// Function assigned to add and substact buttons ///
-let substractProduct = (index) => {
-	if (cart[index].amount > 1) {
+const substractProduct = (index) => {
+	if (cart[index].amount <= 1) {
+		return false;
+	} else {
 		cart[index].amount--;
 		sessionStorage.setItem("cart", JSON.stringify(cart));
 		const amount = document.getElementById("amount-" + index);
@@ -71,7 +75,7 @@ let substractProduct = (index) => {
 	}
 };
 
-let addProduct = (index) => {
+const addProduct = (index) => {
 	cart[index].amount++;
 	sessionStorage.setItem("cart", JSON.stringify(cart));
 	const amount = document.getElementById("amount-" + index);
@@ -83,100 +87,81 @@ let addProduct = (index) => {
 };
 
 /// Function assigned to erase button ///
-let eraseProduct = (index) => {
+const eraseProduct = (index) => {
 	cart.splice(index, 1);
 	sessionStorage.setItem("cart", JSON.stringify(cart));
 	const element = document.getElementById("cartTemplate");
 	while (element.nextElementSibling !== null) {
 		element.nextElementSibling.remove();
 	}
-	calculateCartPrice();
-	displayHtmlContent();
-	showEmptyCartMessage();
+	if (checkIfCartIsEmpty() === false) {
+		calculateCartPrice();
+		displayHtmlContent();
+	}
 };
 
 /// Dysplay message when cart is empty ///
-let showEmptyCartMessage = () => {
-	const cartPrice = document.getElementById("totalCartPrice");
-	if (cartPrice.textContent === "0.00 €") {
+const checkIfCartIsEmpty = () => {
+	if (cart === null || cart.length === 0) {
 		document.getElementById("cart").setAttribute("class", "d-none");
 		document.getElementById("emptyCart").setAttribute("class", "d-block");
+	} else {
+		return false;
 	}
 };
 const cartPrice = JSON.parse(sessionStorage.getItem("cartPrice"));
+
 /// Calcul cart price and push result in storage ///
-calculateCartPrice = () => {
-	let totalPrice = [];
-	cart.forEach((product) => {
-		const index = cart.indexOf(product);
-		const totalProductPrice = cart[index].amount * cart[index].price;
-		totalPrice.push(totalProductPrice);
-	});
-	const reducer = (accumulator, currentValue) => accumulator + currentValue;
-	const htmlCartPrice = document.getElementById("totalCartPrice");
-	htmlCartPrice.textContent =
-		(totalPrice.reduce(reducer, 0) / 1000).toFixed(2) + " €";
-	sessionStorage.setItem(
-		"cartPrice",
-		JSON.stringify(totalPrice.reduce(reducer, 0))
-	);
-	showEmptyCartMessage();
+const calculateCartPrice = () => {
+	if (checkIfCartIsEmpty() === false) {
+		totalPrice = [];
+		cart.forEach((product) => {
+			const index = cart.indexOf(product);
+			totalPrice.push(cart[index].amount * cart[index].price);
+		});
+		const reducer = (accumulator, currentValue) => accumulator + currentValue;
+		const htmlCartPrice = document.getElementById("totalCartPrice");
+		htmlCartPrice.textContent =
+			(totalPrice.reduce(reducer, 0) / 1000).toFixed(2) + " €";
+		sessionStorage.setItem(
+			"cartPrice",
+			JSON.stringify(totalPrice.reduce(reducer, 0))
+		);
+	}
 };
 
-let order = () => {
-	let ids = [];
-	cart.forEach((product) => {
-		ids.push(product.id);
-	});
-	sessionStorage.setItem("ids", JSON.stringify(ids));
+const order = () => {
 	document.getElementById("cartPage").setAttribute("class", "d-none");
 	document.getElementById("orderPage").setAttribute("class", "d-block");
 };
 
-let checkEmail = (mail) => {
-	const mailformat =
+const checkEmail = (mail) => {
+	const mailFormat =
 		/^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})*$/;
-	if (mail.value.match(mailformat)) {
-		return true;
-	} else {
-		return false;
-	}
+	return mail.value.match(mailFormat);
 };
-
-let checkInputText = (input) => {
+const checkInputText = (input) => {
 	const textFormat =
 		/^[A-Za-z\à\â\ä\é\è\ê\ë\ï\î\ô\ö\ù\û\ü\ÿ\ç\æ\œ\ \'\,\.\/\-]+$/;
-	if (input.value.match(textFormat)) {
-		return true;
-	} else {
-		return false;
-	}
+	return input.value.match(textFormat);
 };
 
-let checkAddress = (address) => {
+const checkAddress = (address) => {
 	const textFormat =
 		/^[A-Za-z0-9\à\â\ä\é\è\ê\ë\ï\î\ô\ö\ù\û\ü\ÿ\ç\æ\œ\ \'\,\.\/\-]+$/;
-	if (address.value.match(textFormat)) {
-		return true;
-	} else {
-		return false;
-	}
+	return address.value.match(textFormat);
 };
 
-let checkPostalCode = (postalCode) => {
+const checkPostalCode = (postalCode) => {
 	const postalcodeFormat = /^(F-)?((2[A|B])|[0-9]{2})[0-9]{3}$/;
-	if (postalCode.value.match(postalcodeFormat)) {
-		return true;
-	} else {
-		return false;
-	}
+	return postalCode.value.match(postalcodeFormat);
 };
 
-let displayInvalidInputStyle = (inputName, errorname) => {
+const displayInvalidInputStyle = (inputName, errorname) => {
 	inputName.setAttribute("class", "inputText invalidInput");
 	errorname.setAttribute("class", "d-block errorMessage");
 };
-let displayValidInputStyle = (inputName, errorname) => {
+const displayValidInputStyle = (inputName, errorname) => {
 	inputName.setAttribute("class", "inputText validInput");
 	errorname.setAttribute("class", "d-none errorMessage");
 };
@@ -184,49 +169,45 @@ let displayValidInputStyle = (inputName, errorname) => {
 
 const form = document.forms["contact"];
 
-let checkValue = () => {
+const checkValue = () => {
 	const firstNameErrorMessage = document.getElementById("firstNameError");
 	const lastNameErrorMessage = document.getElementById("lastNameError");
 	const addressErrorMessage = document.getElementById("addressError");
 	const postalCodeErrorMessage = document.getElementById("postalError");
 	const cityErrorMessage = document.getElementById("cityError");
 	const emailErrorMessage = document.getElementById("emailError");
-	for (input of form) {
-		if (input == " ") {
-			return false;
-		}
-	}
-	if (checkInputText(form.firstName) !== true) {
+
+	if (checkInputText(form.firstName) === null) {
 		displayInvalidInputStyle(form.firstName, firstNameErrorMessage);
 		return false;
 	} else {
 		displayValidInputStyle(form.firstName, firstNameErrorMessage);
 	}
-	if (checkInputText(form.lastName) !== true) {
+	if (checkInputText(form.lastName) === null) {
 		displayInvalidInputStyle(form.lastName, lastNameErrorMessage);
 		return false;
 	} else {
 		displayValidInputStyle(form.lastName, lastNameErrorMessage);
 	}
-	if (checkAddress(form.address) !== true) {
+	if (checkAddress(form.address) === null) {
 		displayInvalidInputStyle(form.address, addressErrorMessage);
 		return false;
 	} else {
 		displayValidInputStyle(form.address, addressErrorMessage);
 	}
-	if (checkPostalCode(form.postalCode) !== true) {
+	if (checkPostalCode(form.postalCode) === null) {
 		displayInvalidInputStyle(form.postalCode, postalCodeErrorMessage);
 		return false;
 	} else {
 		displayValidInputStyle(form.postalCode, postalCodeErrorMessage);
 	}
-	if (checkInputText(form.city) !== true) {
+	if (checkInputText(form.city) === null) {
 		displayInvalidInputStyle(form.city, cityErrorMessage);
 		return false;
 	} else {
 		displayValidInputStyle(form.city, cityErrorMessage);
 	}
-	if (checkEmail(form.email) !== true) {
+	if (checkEmail(form.email) === null) {
 		displayInvalidInputStyle(form.email, emailErrorMessage);
 		return false;
 	} else {
@@ -235,31 +216,30 @@ let checkValue = () => {
 	return true;
 };
 
-form.addEventListener("input", () => {
-	checkValue();
-});
-
-let postRequest = async () => {
-	const contact = {
-		firstName: form.firstName.value,
-		lastName: form.lastName.value,
-		address: form.address.value + " " + form.postalCode.value,
-		city: form.city.value,
-		email: form.email.value,
-	};
-	const ids = JSON.parse(sessionStorage.getItem("ids"));
-	const cartValidation = {
-		contact: contact,
-		products: ids,
-	};
-	const myInit = {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(cartValidation),
-	};
+const postRequest = async () => {
 	if (checkValue() === true) {
+		let ids = [];
+		cart.forEach((product) => {
+			ids.push(product._id);
+		});
+		const cartValidation = {
+			contact: {
+				firstName: form.firstName.value,
+				lastName: form.lastName.value,
+				address: form.address.value + " " + form.postalCode.value,
+				city: form.city.value,
+				email: form.email.value,
+			},
+			products: ids,
+		};
+		console.log(cartValidation);
+		const myInit = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(cartValidation),
+		};
 		let response = await fetch(`${apiUrl}/api/cameras/order`, myInit);
 		if (response.ok) {
 			saveResponse = await response.json();
@@ -267,9 +247,9 @@ let postRequest = async () => {
 			const openPage = (window.location = "confirm.html");
 			openPage = await saveResponse;
 		} else {
-			alert(
-				"Nous rencontrons des difficultés pour accéder au serveur. Veuillez réessayer ultérieurement."
-			);
+			document.getElementById("orderPage").setAttribute("class", "d-none");
+			document.getElementById("errorPage").setAttribute("class", "d-block");
+			console.log(response.status);
 		}
 	} else {
 		checkValue();

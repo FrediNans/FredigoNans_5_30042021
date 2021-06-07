@@ -1,0 +1,45 @@
+#errorPage {
+	font-size: 1.5rem;
+	text-align: center;
+	color: red;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+#returnHomeButton {
+	text-decoration: none;
+	padding: 0 1rem 0 1rem;
+	border: 1px solid white;
+}
+.errorButtonContainer {
+	margin-top: 2rem;
+}
+@media screen and(min-width: 768px) {
+	#errorPage {
+		margin: 19rem auto 10rem auto;
+		width: 70%;
+		font-size: 2rem;
+	}
+	#returnHomeButton {
+		font-size: 2rem;
+	}
+}
+@media screen and(min-width: 992px) {
+	#errorPage {
+		margin: 21rem auto 10rem auto;
+	}
+}
+@media screen and(min-width: 1280px) {
+	#errorPage {
+		margin: 16rem auto 4rem auto;
+	}
+}
+@media screen and(min-width: 1920px) {
+	#errorPage {
+		margin: 15rem auto 3.5rem auto;
+	}
+}
+@media screen and(min-width: 3840px) {
+	#errorPage {
+		margin: 21rem auto 6rem auto;
+	}
+}

@@ -1,34 +1,51 @@
-/// Constant used to retrieve the id of selected product in url ///
+/**
+ * Get the id set in the url
+ * @param {URLSearchParams}
+ * @constant {string}
+ */
 const id = window.location.search.substring(1);
 
-/// Function to be used asynchronously with the promise ///
-(async function () {
-	const product = await getProduct(); /// Await fetch ///
+/**
+ * When the page loads await getProduct return
+ * Then display html for product
+ * @async
+ * @event onload
+ */
+window.addEventListener("load", async () => {
+	const product = await getProduct();
+	product.amount = 1;
+	sessionStorage.setItem("currentProduct", JSON.stringify(product));
 	displayHtmlContent(product);
 	currentProductUpdate(product);
-})();
-/// Promise ///
+});
 
-function getProduct() {
-	return (
-		fetch(`${apiUrl}/api/cameras/${id}`)
-			//return fetch(`http://localhost:3000/api/cameras/${id}`)
-			.then(function http(httpResponse) {
-				/// Condition used to display an error page if the fetch fails  ///
-				if (httpResponse.ok === false) {
-					document.getElementById("errorPage").setAttribute("class", "d-block");
-					document.getElementById("main").setAttribute("class", "d-none");
-				} else {
-					return httpResponse.json();
-				}
-			})
-			.then((product) => product)
-			.catch((error) => console.log(error))
-	);
-}
+/**
+ * Fetch api
+ * If response is ok return the response in json format
+ * Else display an error page and log response status in console
+ * @async
+ * @return {Promise}
+ */
+const getProduct = async () => {
+	return fetch(`${apiUrl}/api/cameras/${id}`).then((response) => {
+		if (response.ok) {
+			return response.json();
+		} else {
+			document.getElementById("errorPage").setAttribute("class", "d-block");
+			document.getElementById("main").setAttribute("class", "d-none");
+			console.log(response.status);
+		}
+	});
+};
 
-///  Dynamically display the html content of the selected product ///
-let displayHtmlContent = (product) => {
+/**
+ * Update content with api
+ * Create an option for each lense in the select list with the foreach loop
+ * Assign a unique id to each option
+ * @param {lenses: [string], _id: string, name: string, price: number, description:  string,amount: number, imageUrl: string} product
+ */
+
+const displayHtmlContent = (product) => {
 	const productOptionSelect = document.getElementById("lensesOptions");
 	const options = product.lenses;
 	options.forEach((lenses) => {
@@ -37,25 +54,25 @@ let displayHtmlContent = (product) => {
 		option.setAttribute("id", lenses);
 		productOptionSelect.appendChild(option);
 	});
+
 	const productImage = document.getElementById("productImage");
 	productImage.setAttribute("src", product.imageUrl);
+
 	const productName = document.getElementById("productName");
 	productName.textContent = "Réf : " + product.name;
+
 	const priceInEuro = (product.price / 1000).toFixed(2) + " €";
 	const productPrice = document.getElementById("productPrice");
 	productPrice.textContent = priceInEuro;
+
 	const productDescription = document.getElementById("productDescription");
 	productDescription.textContent = product.description;
-	/// Assign function to button ///
-	const substractButton = document.getElementById("productButtonLess");
-	substractButton.setAttribute("onclick", "substractProduct()");
-	const addButton = document.getElementById("productButtonMore");
-	addButton.setAttribute("onclick", "addProduct()");
-	const addToCartButton = document.getElementById("cartButton");
-	addToCartButton.setAttribute("onclick", "addToCart()");
 };
 
-/// Product object ///
+/**
+ * common object used to group all the info before sending them to the cart
+ * @param {id: string, name: string, price: number, amount: number, option: string} currentProduct
+ */
 let currentProduct = {
 	id: id,
 	name: "",
@@ -63,38 +80,44 @@ let currentProduct = {
 	amount: 1,
 	option: "",
 };
-/// dynamically modifies the product object ///
 let currentProductUpdate = (product) => {
 	currentProduct.name = product.name;
 	currentProduct.price = product.price;
 };
 
-/// Function assign to substract button ///
-let substractProduct = () => {
-	if (currentProduct.amount > 1) {
+/**
+ * Function assign to button + and -
+ * Change amount of product and update the html content
+ */
+const addProduct = () => {
+	currentProduct.amount++;
+	document.getElementById("productAmount").textContent = currentProduct.amount;
+};
+const substractProduct = () => {
+	if (currentProduct.amount <= 1) {
+		return false;
+	} else {
 		currentProduct.amount--;
-		const productAmount = document.getElementById("productAmount");
-		productAmount.textContent = currentProduct.amount;
+		document.getElementById("productAmount").textContent =
+			currentProduct.amount;
 	}
 };
-
-/// Function assign to add button ///
-let addProduct = () => {
-	currentProduct.amount++;
-	const productAmount = document.getElementById("productAmount");
-	productAmount.textContent = currentProduct.amount;
-};
-
-/// Load the cart if it exists ///
+/**
+ * Load the cart if it exists
+ */
 let cart = JSON.parse(sessionStorage.getItem("cart"));
 
-/// Check if the cart exists ///
-/// If exists, updates it and sends in storage ///
-/// Otherwise creates the cart, adds the product and sends in storage ///
-let addToCart = () => {
+/**
+ * Check if the cart exists
+ * If exists, updates it and sends in storage
+ * Otherwise creates the cart, adds the current product and sends in storage
+ * Open the add to cart confirmation page
+ */
+
+const addToCart = () => {
 	const selectOption = document.getElementById("lensesOptions");
-	const index = selectOption.selectedIndex;
-	currentProduct.option = selectOption[index].value;
+	const indexOption = selectOption.selectedIndex;
+	currentProduct.option = selectOption[indexOption].value;
 	if (cart !== null) {
 		updateProductInCart();
 		sessionStorage.setItem("cart", JSON.stringify(cart));
@@ -103,15 +126,16 @@ let addToCart = () => {
 		cart.push(currentProduct);
 		sessionStorage.setItem("cart", JSON.stringify(cart));
 	}
-	/// Open confirmation page ///
 	document.getElementById("comfirm__page").setAttribute("class", "d-block");
 	document.getElementById("main").setAttribute("class", "d-none");
 };
 
-/// check whith id and option if product is allready in cart ///
-/// If allready in , update amount ///
-/// otherwise add product in cart ///
-let updateProductInCart = () => {
+/**
+ * Check whith id and option if product is allready in cart
+ * If allready in , update amount
+ * Otherwise add product in cart
+ */
+const updateProductInCart = () => {
 	const index = cart.findIndex(
 		(p) => p.id === currentProduct.id && p.option === currentProduct.option
 	);

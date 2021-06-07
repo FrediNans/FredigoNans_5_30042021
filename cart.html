@@ -23,7 +23,7 @@
 
 			<nav class="header__navbar">
 				<a class="header__cartbutton" href="index.html">
-					<i class="fas fa-camera"></i> Acceuil
+					<i class="fas fa-camera"></i> Accueil
 				</a>
 				<a class="header__cartbutton" href="javascript:history.go(-1)">
 					<i class="far fa-arrow-alt-circle-left"></i> Retour
@@ -45,10 +45,8 @@
 					<div id="cartBody" class="cart__body">
 						<template id="cartTemplate">
 							<div id="cartProduct-" class="cart__product">
-								<div class="cart__case">
-									<div id="productName-"></div>
-								</div>
-								<div id="productAmount-" class="cart__case">
+								<div class="cart__case" id="productName-"></div>
+								<div id="productAmount-" class="cart__amountcase">
 									<button
 										class="cart__lessAmountButton"
 										id="cart__lessAmountButton-"
@@ -73,7 +71,9 @@
 						<div id="totalCartPrice" class="cart__totalcase2"></div>
 					</div>
 					<div class="cart__orderbuttonbox">
-						<button id="orderButton" class="primarybutton">Commander</button>
+						<button id="orderButton" class="primarybutton" onclick="order()">
+							Commander
+						</button>
 					</div>
 				</div>
 				<div id="emptyCart" class="d-none">
@@ -150,6 +150,17 @@
 					<button id="validform" class="primarybutton" onclick="postRequest()">
 						Valider
 					</button>
+				</div>
+			</section>
+			<section id="errorPage" class="d-none">
+				<div class="errorServerMessage">
+					Nous rencontrons des difficultés pour accéder au serveur. Veuillez
+					réessayer dans quelques minutes.
+				</div>
+				<div class="errorButtonContainer">
+					<a id="returnHomeButton" class="primarybutton" href="index.html">
+						Retour à l'accueil
+					</a>
 				</div>
 			</section>
 		</main>

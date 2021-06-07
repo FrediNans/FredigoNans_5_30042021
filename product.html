@@ -23,7 +23,7 @@
 
 			<nav class="header__navbar">
 				<a class="header__cartbutton" href="index.html">
-					<i class="fas fa-camera"></i> Acceuil
+					<i class="fas fa-camera"></i> Accueil
 				</a>
 				<a class="header__cartbutton" href="cart.html">
 					<i class="fas fa-shopping-cart"></i> Panier
@@ -31,50 +31,60 @@
 			</nav>
 			<div class="header__deco"></div>
 		</header>
-		<main>
+		<main class="productcard__main">
 			<div id="main" class="productcard">
 				<img class="productcard__image" id="productImage" />
 				<div class="productcard__body">
 					<div class="productcard__name" id="productName"></div>
 					<div id="productPrice" class="productcard__price"></div>
 					<div class="productcard__description" id="productDescription"></div>
-
-					<select
-						class="productcard__options"
-						name="Choix finition"
-						id="lensesOptions"
-					>
-						<option value="Aucun" selected>Choix objectif</option>
-					</select>
+					<div class="productcard__optionscontainer">
+						<div>Choix objectif :</div>
+						<select
+							class="productcard__options"
+							name="Choix finition"
+							id="lensesOptions"
+						>
+							<option value="Aucun" selected>Aucun</option>
+						</select>
+					</div>
 
 					<div class="productcard__amountbar">
-						<button id="productButtonLess" class="productcard__amountbutton">
+						<button
+							id="productButtonLess"
+							class="productcard__amountbutton"
+							onclick="substractProduct()"
+						>
 							<i class="far fa-minus-square"></i>
 						</button>
 						<div>Quantité :</div>
 						<div id="productAmount">1</div>
-						<button class="productcard__amountbutton" id="productButtonMore">
+						<button
+							class="productcard__amountbutton"
+							id="productButtonMore"
+							onclick="addProduct()"
+						>
 							<i class="far fa-plus-square"></i>
 						</button>
 					</div>
 
-					<button class="primarybutton" id="cartButton">
+					<button class="primarybutton" id="cartButton" onclick="addToCart()">
 						Ajouter au panier
 					</button>
 				</div>
 			</div>
-			<div id="errorPage" class="d-none">
-				<div class="">
-					<p class="">
-						Nous rencontrons actuellement des problèmes pour accéder à cette
-						référence.
-					</p>
-					<div class="">
-						<a class="" href="index.html">Retour à l'acceuil</a>
-					</div>
+			<section id="errorPage" class="d-none">
+				<div class="errorServerMessage">
+					Nous rencontrons des difficultés pour accéder au serveur. Veuillez
+					réessayer dans quelques minutes.
 				</div>
-			</div>
-			<div id="comfirm__page" class="d-none">
+				<div class="errorButtonContainer">
+					<a id="returnHomeButton" class="primarybutton" href="index.html">
+						Retour à l'accueil
+					</a>
+				</div>
+			</section>
+			<section id="comfirm__page" class="d-none">
 				<div class="confirm">
 					<div class="confirm__body">
 						<div class="confirm__h1">
@@ -82,16 +92,16 @@
 						</div>
 						<div class="confirm__h2">Que souhaitez-vous faire maintenant ?</div>
 						<div class="confirm__buttonbar">
-							<a class="confirm__button" href="index.html"
+							<a class="confirm__button primarybutton" href="index.html"
 								>Choisir un autre produit</a
 							>
-							<a class="confirm__button" href="cart.html"
+							<a class="primarybutton confirm__button" href="cart.html"
 								>Accéder à votre panier</a
 							>
 						</div>
 					</div>
 				</div>
-			</div>
+			</section>
 		</main>
 		<footer class="footer">
 			<div class="footer__deco"></div>

@@ -18,6 +18,9 @@
 		<title>Orinoco</title>
 	</head>
 	<body>
+		<div id="loader" class="loaders">
+			<img id="loadspinner" src="image/760.gif" alt="" />
+		</div>
 		<header class="header">
 			<img class="logo" src="image/logo.png" alt="logo Orinoco" />
 
@@ -31,22 +34,39 @@
 		<main class="main" id="main">
 			<h1 class="home-title">Notre sélection d'appareils photo vintage</h1>
 			<template id="templateArticle"
-				><a id="cardId" class="home-card__link" href="">
+				><a id="cardId-" class="home-card__link" href="">
 					<div class="home-card">
 						<img src="image/cine.png" class="home-card__deco" alt="" />
-
 						<div class="home-card__image-box">
-							<img id="cardImage" src="" class="home-card__image" alt="..." />
+							<img
+								id="cardImage-"
+								src=""
+								class="home-card__image"
+								alt="..."
+								onload="hideLoader()"
+							/>
 						</div>
 						<div class="home-card__body">
-							<h2 id="cardName" class="home-card__name"></h2>
+							<h2 id="cardName-" class="home-card__name"></h2>
 
-							<div id="cardPrice" class="home-card__price"></div>
+							<div id="cardPrice-" class="home-card__price"></div>
 						</div>
 					</div>
 				</a>
 			</template>
 		</main>
+
+		<section id="errorPage" class="d-none">
+			<div class="errorServerMessage">
+				Nous rencontrons des difficultés pour accéder au serveur. Veuillez
+				réessayer dans quelques minutes.
+			</div>
+			<div class="errorButtonContainer">
+				<a id="returnHomeButton" class="primarybutton" href="index.html">
+					Actualiser la page
+				</a>
+			</div>
+		</section>
 		<footer class="footer">
 			<div class="footer__deco"></div>
 			<nav class="footer__navbar">
