@@ -1,7 +1,12 @@
+#cartPage {
+	margin-bottom: 5rem;
+}
 .cart {
 	&__title {
+		margin-top: 3rem;
 		text-align: center;
 		color: $secondary;
+		font-size: 2rem;
 	}
 	&__headline {
 		display: flex;
@@ -60,10 +65,11 @@
 		height: 65px;
 	}
 	&__erasebutton {
+		cursor: pointer;
 		width: 20px;
 		height: 20px;
 		border: none;
-		background-color: $primary;
+		background-color: $tertiary;
 		&::before {
 			width: 20px;
 			height: 20px;
@@ -105,18 +111,12 @@
 		font-weight: bold;
 		text-align: center;
 	}
-	&__empty {
-		text-align: center;
-		font-size: 2rem;
-		color: $secondary;
-		font-weight: bold;
-	}
 	&__emptybutton {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		width: 60%;
-		margin: 3rem auto 4rem auto;
+		margin: 3rem auto 5rem auto;
 		text-decoration: none;
 		color: $tertiary;
 		background-color: $secondary;
@@ -131,13 +131,14 @@
 		margin-bottom: 2rem;
 	}
 	&__moreAmountButton {
+		cursor: pointer;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		width: 30px;
 		height: 30px;
 		border: none;
-		background-color: $primary;
+		background-color: $tertiary;
 		&::before {
 			width: 30px;
 			height: 30px;
@@ -149,13 +150,14 @@
 		}
 	}
 	&__lessAmountButton {
+		cursor: pointer;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		width: 30px;
 		height: 30px;
 		border: none;
-		background-color: $primary;
+		background-color: $tertiary;
 		&::before {
 			width: 30px;
 			height: 30px;
@@ -167,13 +169,17 @@
 		}
 	}
 }
+#emptyCart {
+	margin-top: 11rem;
+	margin-bottom: 11rem;
+}
+
 @media screen and(min-width: 768px) {
 	.cart {
 		font-size: 1.5rem;
 		width: 80%;
 		margin: 0 auto 0 auto;
 		&__title {
-			margin-top: 14rem;
 			font-size: 2.5rem;
 		}
 		&__erasebutton {
@@ -220,22 +226,41 @@
 			font-size: 1.8rem;
 		}
 	}
+	#orderButton {
+		width: 40%;
+	}
+	#cartPage {
+		margin-top: 17rem;
+		margin-bottom: 6rem;
+	}
+	#emptyCart {
+		margin-top: 25rem;
+		margin-bottom: 18rem;
+	}
+	.errorMessageShow {
+		font-size: 1.5rem;
+		text-align: right;
+		margin-right: 1.5rem;
+	}
 }
-#orderButton {
-	width: 40%;
-}
+
 @media screen and(min-width: 992px) {
 	.cart {
 		width: 60%;
 		&__title {
-			margin-top: 18rem;
+			font-size: 3rem;
 		}
 		&__emptybutton {
 			width: 20%;
 		}
-		&__title {
-			font-size: 2rem;
-		}
+	}
+	#cartPage {
+		margin-top: 11rem;
+		margin-bottom: 1rem;
+	}
+	#emptyCart {
+		margin-top: 15rem;
+		margin-bottom: 8rem;
 	}
 }
 @media screen and(min-width: 1440px) {
@@ -251,112 +276,194 @@
 			height: 3rem;
 		}
 	}
+	#emptyCart {
+		margin-top: 20rem;
+		margin-bottom: 13rem;
+	}
 }
-.form {
-	width: 90%;
-	margin: auto;
-}
-textarea {
-	width: 50%;
-	height: 2rem;
-	padding-left: 1rem;
-	margin-left: 1rem;
-	border: 1px solid $secondary;
-	border-radius: 0.3rem;
-}
+
 input {
-	width: 55%;
 	height: 2rem;
-	padding-left: 1rem;
-	margin-left: 1rem;
+	width: 100%;
+	border: 1px solid $secondary;
+	padding: 0 2rem 0 2rem;
+	border-radius: 0.3rem;
+	font-size: 1.2rem;
+	font-family: $font-family-base;
+}
+.inputName {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	width: 100%;
+	padding: 0 2rem 0 2rem;
+	height: 2rem;
+	margin-top: 1rem;
+	font-size: 1.2rem;
+}
+.notation {
+	width: 100%;
+	margin-top: 1rem;
+	text-align: center;
+}
+
+textarea {
 	border: 1px solid $secondary;
 	border-radius: 0.3rem;
+	width: 100%;
 }
 .validInput {
-	background: url(checkok.webp) 98% center no-repeat;
+	background: url(checkok.webp) 92% center no-repeat;
 
 	background-color: #ffffff;
 	color: rgb(1, 204, 1);
 	border-color: rgb(1, 204, 1);
+	transition: all 0.1s;
 }
 .invalidInput {
-	background: url(cross.webp) 98% center no-repeat;
-	background-color: #ffffff;
+	background-color: #fadfdf;
 	color: red;
-	box-shadow: 0 0 5px red;
-}
-.formContainer {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	width: 100%;
-	align-items: center;
-	margin-top: 1rem;
-	font-family: $font-family-base;
-	font-size: 1.2rem;
-	&:last-child {
-		justify-self: right;
-	}
-}
-#address {
-	height: 2.2rem;
-	width: 55%;
-	font-family: $font-family-base;
-	font-size: 1.2rem;
-	line-height: 1.2rem;
-}
-.errorMessage {
-	width: 100%;
-	color: red;
-	text-align: right;
-}
-#firstName {
-	font-family: $font-family-base;
-	font-size: 1.2rem;
-}
-#lastName {
-	font-family: $font-family-base;
-	font-size: 1.2rem;
+	border-color: red;
+	box-shadow: -3px 6px 11px 1px #888888;
+	transition: all 0.1s;
 }
 
-#codePostal {
+.formContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 70%;
+	align-items: center;
+	font-family: $font-family-base;
+	box-sizing: border-box;
+	margin: auto;
+}
+
+#address {
 	font-family: $font-family-base;
 	font-size: 1.2rem;
+	align-content: center;
+	padding: 0 2rem 0 2rem;
+	max-height: 2rem;
+	min-width: 100%;
+	overflow: auto;
 }
-#city {
-	font-family: $font-family-base;
-	font-size: 1.2rem;
-}
-#email {
-	font-family: $font-family-base;
-	font-size: 1.2rem;
-}
+
 #validform {
 	width: 40%;
+	margin-top: 0.5rem;
 }
 #formtitle {
 	text-align: center;
 	color: $secondary;
+	margin: 0.5rem 0 0 0;
 }
+.errorMessageHide {
+	transform: scale(0);
+	transition: all 0.2s;
+	z-index: -9999;
+	height: 0;
+}
+.errorMessageShow {
+	width: 100%;
+	z-index: 1;
+	color: red;
+	text-align: center;
+	margin-top: 0.5rem;
+	transform: scale(1);
+	transition: all 0.2s;
+}
+
 @media screen and(min-width: 768px) {
+	.formContainer {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+	#address {
+		font-family: $font-family-base;
+		font-size: 1.8rem;
+		align-content: center;
+		padding: 0 2rem 0 2rem;
+		min-height: 3rem;
+		overflow: auto;
+		max-width: 60%;
+		min-width: 60%;
+		margin-top: 1rem;
+	}
+	input {
+		height: 3rem;
+		width: 60%;
+		border: 1px solid $secondary;
+		padding: 0 2rem 0 2rem;
+		border-radius: 0.3rem;
+		font-size: 1.8rem;
+		margin-top: 1rem;
+	}
+	.inputName {
+		justify-content: flex-start;
+		align-content: center;
+		width: 25%;
+		padding: 1px 0 1px 0;
+		height: 3rem;
+		margin-top: 1rem;
+		font-size: 1.8rem;
+	}
 	#formtitle {
-		margin-top: 14rem;
+		font-size: 2.5rem;
+	}
+
+	#emptyFormMessage {
+		font-size: 1.8rem;
+	}
+	.notation {
+		width: 100%;
+		margin-top: 1rem;
+		text-align: center;
+		font-size: 1.4rem;
 	}
 	#orderPage {
-		width: 70%;
-		margin: auto;
+		margin: 13rem auto 0 auto;
+	}
+	.errorMessageShow {
+		text-align: right;
+	}
+	#emptyFormMessage {
+		text-align: center;
 	}
 }
 @media screen and(min-width: 992px) {
 	#formtitle {
-		margin-top: 16rem;
 		font-size: 2rem;
 	}
 	#orderPage {
-		width: 40%;
-		margin: auto;
+		margin: 11rem auto 0 auto;
 	}
 	.formContainer {
 		font-size: 1.5rem;
+		width: 45%;
+	}
+	.inputName {
+		width: 30%;
+		font-size: 1.8rem;
+	}
+	input {
+		height: 3rem;
+		width: 50%;
+	}
+	#address {
+		max-width: 50%;
+		min-width: 50%;
+	}
+}
+@media screen and(min-width: 1440px) {
+	#formtitle {
+		font-size: 3rem;
+	}
+	#orderPage {
+		margin: 12rem auto 0 auto;
 	}
 }

@@ -7,6 +7,7 @@
 const hideLoader = () => {
 	document.getElementById("loader").setAttribute("class", "hide");
 };
+setTimeout("hideLoader()", 6000);
 window.addEventListener("load", async () => {
 	const products = await getProducts();
 	for (product of products) {

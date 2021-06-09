@@ -4,6 +4,7 @@
 	justify-content: space-around;
 	align-items: center;
 	width: 100%;
+	margin-bottom: 2rem;
 
 	&__h1 {
 		width: 100%;
@@ -41,12 +42,13 @@
 }
 @media screen and(min-width: 768px) {
 	.confirm {
-		margin-top: 15rem;
+		margin-top: 13rem;
+		margin-bottom: 0;
 		&__h1 {
 			margin-bottom: 3rem;
 		}
 		&__h2 {
-			margin-bottom: 7rem;
+			margin-bottom: 3rem;
 		}
 		&__button {
 			margin-bottom: 4rem;
@@ -58,7 +60,7 @@
 }
 @media screen and(min-width: 992px) {
 	.confirm {
-		margin-top: 17rem;
+		margin-top: 15rem;
 		&__h1 {
 			margin-bottom: 2rem;
 		}
@@ -78,5 +80,16 @@
 			justify-content: space-around;
 			margin-bottom: 3rem;
 		}
+	}
+}
+@media screen and(min-width: 1280px) {
+	.confirm {
+		margin-top: 11rem;
+	}
+}
+@media screen and(min-width: 1440px) {
+	.confirm {
+		margin-top: 16rem;
+		margin-bottom: 5rem;
 	}
 }

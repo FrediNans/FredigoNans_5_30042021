@@ -13,3 +13,4 @@ const findHost = () => {
 	}
 };
 const apiUrl = findHost();
+console.log(findHost());

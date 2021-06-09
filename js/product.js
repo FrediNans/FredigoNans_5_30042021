@@ -70,7 +70,7 @@ const displayHtmlContent = (product) => {
 };
 
 /**
- * common object used to group all the info before sending them to the cart
+ * common object used to group all infos before sending them to the cart
  * @param {id: string, name: string, price: number, amount: number, option: string} currentProduct
  */
 let currentProduct = {
@@ -86,28 +86,31 @@ let currentProductUpdate = (product) => {
 };
 
 /**
- * Function assign to button + and -
- * Change amount of product and update the html content
+ * Function assigned to add and substact buttons
+ * Change quantity of product and update the html content
+ * Operator add = 2 substract = 0
+ * @param {*} operator
  */
-const addProduct = () => {
-	currentProduct.amount++;
-	document.getElementById("productAmount").textContent = currentProduct.amount;
-};
-const substractProduct = () => {
-	if (currentProduct.amount <= 1) {
-		return false;
-	} else {
+
+const changeQuantity = (operator) => {
+	const displayHtmlQuantity = document.getElementById("productAmount");
+	if (operator > 1) {
+		currentProduct.amount++;
+		displayHtmlQuantity.textContent = currentProduct.amount;
+	}
+	if (operator < 1 && currentProduct.amount > 1) {
 		currentProduct.amount--;
-		document.getElementById("productAmount").textContent =
-			currentProduct.amount;
+		displayHtmlQuantity.textContent = currentProduct.amount;
 	}
 };
+
 /**
  * Load the cart if it exists
  */
 let cart = JSON.parse(sessionStorage.getItem("cart"));
 
 /**
+ * Update current option
  * Check if the cart exists
  * If exists, updates it and sends in storage
  * Otherwise creates the cart, adds the current product and sends in storage
