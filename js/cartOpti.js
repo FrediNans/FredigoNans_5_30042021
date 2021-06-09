@@ -107,7 +107,8 @@ const changeQuantity = (index, operator) => {
 
 /**
  * Function assigned to erase button
- *
+ * Erase product with selected index
+ * Update html content
  * @param {*} index
  */
 const eraseProduct = (index) => {
@@ -122,8 +123,10 @@ const eraseProduct = (index) => {
 		displayHtmlContent();
 	}
 };
-
-/// Dysplay message when cart is empty ///
+/**
+ * Dysplay message when cart is empty
+ * @returns {false}
+ */
 const checkIfCartIsEmpty = () => {
 	if (cart === null || cart.length === 0) {
 		document.getElementById("cart").setAttribute("class", "d-none");
@@ -132,8 +135,9 @@ const checkIfCartIsEmpty = () => {
 		return false;
 	}
 };
-
-/// Calcul cart price and push result in storage ///
+/**
+ * Calcul cart price and push result in storage
+ */
 const calculateCartPrice = () => {
 	totalPrice = [];
 	cart.forEach((product) => {
@@ -147,7 +151,10 @@ const calculateCartPrice = () => {
 
 	sessionStorage.setItem("cartPrice", JSON.stringify(cartPrice));
 };
-
+/**
+ * function assign to "Commander" button
+ * Open order form
+ */
 const order = () => {
 	document.getElementById("cartPage").setAttribute("class", "d-none");
 	document.getElementById("orderPage").setAttribute("class", "d-block");
@@ -171,38 +178,58 @@ const regex = [
 	/^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})*$/,
 ];
 
+/**
+ * Get order form
+ * @constant {form}
+ */
 const form = document.forms["contact"];
 
-/// check input ///
+/**
+ * Auto call function
+ * Assign function to each input whith id in param
+ * Create array and puch all input id
+ * @param {input}
+ */
 const arrayOfInput = [];
-const addEventInput = () => {
+(() => {
 	for (input of form) {
 		arrayOfInput.push(input.id);
 		input.setAttribute("oninput", `checkInput(${input.id})`);
 	}
-	console.log(arrayOfInput);
-};
-addEventInput();
+})();
 
-const checkInput = (i) => {
-	const index = arrayOfInput.indexOf(i.id);
+/**
+ * Function assigned to input
+ * Compare input values ​​with regex
+ * Depending on the result displays an error message and changes the style
+ * @param {*} input
+ * @event input
+ */
+const checkInput = (input) => {
+	const index = arrayOfInput.indexOf(input.id);
 	if (
 		regex[index].test(form[index].value) !== true ||
 		form[index].value.length < 1
 	) {
 		document
-			.getElementById(i.id)
+			.getElementById(input.id)
 			.setAttribute("class", "inputText invalidInput");
 		document
-			.getElementById("errorMessage-" + i.id)
+			.getElementById("errorMessage-" + input.id)
 			.setAttribute("class", "errorMessageShow");
 	} else {
 		document.getElementById(i.id).setAttribute("class", "inputText validInput");
 		document
-			.getElementById("errorMessage-" + i.id)
+			.getElementById("errorMessage-" + input.id)
 			.setAttribute("class", "errorMessageHide");
 	}
 };
+
+/**
+ * Check if there are empty inputs
+ * Depending on the result displays an error message and changes the style
+ * @event onclick
+ */
 const checkEmptyInput = () => {
 	arrayOfInput.forEach((input) => {
 		const index = arrayOfInput.indexOf(input);
@@ -214,7 +241,14 @@ const checkEmptyInput = () => {
 		}
 	});
 };
-console.log(form.id);
+
+/**
+ * Compare all input whith regex
+ * If there is an error return false
+ * Else return true
+ * @returns {true, false}
+ * @event onclick
+ */
 const checkValue = () => {
 	if (
 		regex[0].test(form.firstName.value) !== true ||
@@ -230,6 +264,19 @@ const checkValue = () => {
 	}
 };
 
+/**
+ * If checkvalue return true
+ * Create array of product id
+ * Creates an array of id of all products in the cart
+ * Creates contact object to send to server
+ * Send Object to server
+ * If response is ok push response in session storage
+ * Open confirmation page
+ * Else display error page
+ * If checkValue return false return
+ * @async
+ * @event onclick
+ */
 const postRequest = async () => {
 	checkEmptyInput();
 	if (checkValue() === true) {
@@ -265,6 +312,6 @@ const postRequest = async () => {
 			console.log(response.status);
 		}
 	} else {
-		checkValue();
+		return;
 	}
 };

@@ -459,11 +459,24 @@ textarea {
 		min-width: 50%;
 	}
 }
-@media screen and(min-width: 1440px) {
+@media screen and(min-width: 1280px) {
 	#formtitle {
 		font-size: 3rem;
 	}
 	#orderPage {
 		margin: 12rem auto 0 auto;
+	}
+	#address {
+		font-size: 1.2rem;
+		min-height: 2rem;
+	}
+	input {
+		height: 2rem;
+
+		font-size: 1.2rem;
+	}
+	.inputName {
+		height: 2rem;
+		font-size: 1.2rem;
 	}
 }

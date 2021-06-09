@@ -4,16 +4,24 @@
  * @async
  * @event onload
  */
-const hideLoader = () => {
-	document.getElementById("loader").setAttribute("class", "hide");
-};
-setTimeout("hideLoader()", 6000);
+
 window.addEventListener("load", async () => {
 	const products = await getProducts();
 	for (product of products) {
 		displayHtml(product);
 	}
 });
+
+/**
+ * Function assign to image
+ * Hide the loader when they are loaded
+ * Implementation of a 6 second timer to stop the function
+ * And display the error page in the event of a loading problem
+ */
+const hideLoader = () => {
+	document.getElementById("loader").setAttribute("class", "hide");
+};
+setTimeout("hideLoader()", 6000);
 
 /**
  * Fetch api
@@ -23,14 +31,21 @@ window.addEventListener("load", async () => {
  * @return {Promise}
  */
 const getProducts = async () => {
-	const response = await fetch(`${apiUrl}/api/cameras`);
-	if (response.ok) {
-		return response.json();
-	} else {
-		document.getElementById("errorPage").setAttribute("class", "d-block");
-		document.getElementById("main").setAttribute("class", "d-none");
-		console.log(response.status);
-	}
+	return fetch(`${apiUrl}/api/cameras`)
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			} else {
+				document.getElementById("errorPage").setAttribute("class", "d-block");
+				document.getElementById("main").setAttribute("class", "d-none");
+				console.log(response.status);
+			}
+		})
+		.catch((error) => {
+			document.getElementById("errorPage").setAttribute("class", "d-block");
+			document.getElementById("main").setAttribute("class", "d-none");
+			console.log(error.message);
+		});
 };
 
 /**

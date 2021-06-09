@@ -6,6 +6,13 @@ html {
   font-family: "Harmattan", Arial, Helvetica, sans-serif;
 }
 
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 @media screen and (min-width: 1900px) {
   html {
     font-size: 20px;
@@ -90,9 +97,14 @@ html {
 }
 @media screen and (min-width: 992px) {
   .logo {
-    width: 20%;
+    width: 15%;
     margin-top: 1.5rem;
     margin-left: 2rem;
+  }
+
+  .header__cartbutton {
+    transform: scale(0.9);
+    font-size: 1rem;
   }
 }
 @media screen and (min-width: 1900px) {
@@ -1134,13 +1146,28 @@ textarea {
     min-width: 50%;
   }
 }
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1280px) {
   #formtitle {
     font-size: 3rem;
   }
 
   #orderPage {
     margin: 12rem auto 0 auto;
+  }
+
+  #address {
+    font-size: 1.2rem;
+    min-height: 2rem;
+  }
+
+  input {
+    height: 2rem;
+    font-size: 1.2rem;
+  }
+
+  .inputName {
+    height: 2rem;
+    font-size: 1.2rem;
   }
 }
 #confirmTitle {

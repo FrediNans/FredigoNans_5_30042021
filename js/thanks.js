@@ -1,3 +1,9 @@
+/**
+ * Get the response and the total price of the basket in the sessionstorage
+ * Display html content with the recovered data
+ * Clears the sessionstorage when you quit the page
+ * @event unload
+ */
 const response = JSON.parse(sessionStorage.getItem("response"));
 const cartPrice = JSON.parse(sessionStorage.getItem("cartPrice"));
 const orderElt = document.getElementById("orderId");
