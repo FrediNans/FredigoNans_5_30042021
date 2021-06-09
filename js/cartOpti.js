@@ -218,7 +218,9 @@ const checkInput = (input) => {
 			.getElementById("errorMessage-" + input.id)
 			.setAttribute("class", "errorMessageShow");
 	} else {
-		document.getElementById(i.id).setAttribute("class", "inputText validInput");
+		document
+			.getElementById(input.id)
+			.setAttribute("class", "inputText validInput");
 		document
 			.getElementById("errorMessage-" + input.id)
 			.setAttribute("class", "errorMessageHide");
