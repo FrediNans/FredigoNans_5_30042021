@@ -13,8 +13,6 @@ const id = window.location.search.substring(1);
  */
 window.addEventListener("load", async () => {
 	const product = await getProduct();
-	product.amount = 1;
-	sessionStorage.setItem("currentProduct", JSON.stringify(product));
 	displayHtmlContent(product);
 	currentProductUpdate(product);
 });
@@ -27,15 +25,21 @@ window.addEventListener("load", async () => {
  * @return {Promise}
  */
 const getProduct = async () => {
-	return fetch(`${apiUrl}/api/cameras/${id}`).then((response) => {
-		if (response.ok) {
-			return response.json();
-		} else {
+	return fetch(`${apiUrl}/api/cameras/${id}`)
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			} else {
+				document.getElementById("errorPage").setAttribute("class", "d-block");
+				document.getElementById("main").setAttribute("class", "d-none");
+				console.log(response.status);
+			}
+		})
+		.catch((error) => {
 			document.getElementById("errorPage").setAttribute("class", "d-block");
 			document.getElementById("main").setAttribute("class", "d-none");
-			console.log(response.status);
-		}
-	});
+			console.log(error.message);
+		});
 };
 
 /**
