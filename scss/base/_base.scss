@@ -26,9 +26,8 @@ body {
 }
 .d-block {
 	display: block;
-	transform: scale(1);
 }
 .d-none {
 	display: none;
-	transform: scale(0);
+	height: 0;
 }

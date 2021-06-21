@@ -30,7 +30,7 @@ const getProduct = async () => {
 			if (response.ok) {
 				return response.json();
 			} else {
-				document.getElementById("errorPage").setAttribute("class", "d-block");
+				document.getElementById("errorPage").setAttribute("class", "errorPage");
 				document.getElementById("main").setAttribute("class", "d-none");
 				console.log(response.status);
 			}

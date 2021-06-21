@@ -35,16 +35,12 @@ const getProducts = async () => {
 		.then((response) => {
 			if (response.ok) {
 				return response.json();
-			} else {
-				document.getElementById("errorPage").setAttribute("class", "d-block");
-				document.getElementById("main").setAttribute("class", "d-none");
-				console.log(response.status);
 			}
 		})
 		.catch((error) => {
-			document.getElementById("errorPage").setAttribute("class", "d-block");
+			document.getElementById("errorPage").setAttribute("class", "errorPage");
 			document.getElementById("main").setAttribute("class", "d-none");
-			console.log(error.message);
+			console.log(error);
 		});
 };
 
