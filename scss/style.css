@@ -272,9 +272,27 @@ body {
   height: 23rem;
   overflow: hidden;
   margin: 0 auto 3.5rem auto;
-  box-shadow: 6px 6px 16px 2px #000000;
   border-radius: 15px;
-  border: 2px solid #e8e8e8;
+}
+.home-card::before {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  font-size: 1.4rem;
+  color: #fff;
+  left: 0px;
+  transform: translateX(-400px);
+  content: "Cliquez pour plus de détails !";
+  transition: all 0.4s;
+}
+.home-card:hover::before {
+  transform: translateX(0);
+  opacity: 0.8;
+  background-color: #575757;
 }
 .home-card__image-box {
   height: 13rem;
@@ -308,11 +326,6 @@ body {
   font-size: 1.2rem;
   font-weight: bold;
   color: #575757;
-  transition: all 0.3s;
-}
-.home-card__link:hover {
-  transform: scale(1.03);
-  opacity: 0.7;
 }
 
 @media screen and (min-width: 768px) {
@@ -345,10 +358,12 @@ body {
 @media screen and (min-width: 1280px) {
   .home-card {
     height: 10rem;
+    margin: 0;
   }
   .home-card__link {
-    width: 25%;
-    margin: 0 2% 0 2%;
+    margin: 0;
+    width: 22%;
+    height: 10rem;
   }
   .home-card__image-box {
     height: 10rem;
@@ -403,6 +418,7 @@ body {
 .productcard__options {
   font-family: "Harmattan";
   color: #fff;
+  cursor: pointer;
   text-align: center;
   text-align-last: center;
   font-size: 1.5rem;
@@ -424,10 +440,20 @@ body {
 .productcard__amountbutton {
   height: 45px;
   width: 45px;
+  cursor: pointer;
   background-color: #fff;
   border: none;
   color: #575757;
   font-size: 2.2rem;
+  transition: all 0.2s;
+}
+.productcard__amountbutton:hover {
+  transform: scale(1.02);
+  box-shadow: -3px 6px 11px 1px #000000;
+  background-color: #575757;
+  color: #fff;
+  border: 1px solid white;
+  border-radius: 0.5rem;
 }
 .productcard__amountbar {
   display: flex;
