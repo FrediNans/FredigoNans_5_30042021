@@ -306,7 +306,7 @@ const postRequest = async () => {
 		if (response.ok) {
 			saveResponse = await response.json();
 			sessionStorage.setItem("response", JSON.stringify(saveResponse));
-			const openPage = (window.location = "confirm.html");
+			let openPage = (window.location = "confirm.html");
 			openPage = await saveResponse;
 		} else {
 			document.getElementById("orderPage").setAttribute("class", "d-none");
